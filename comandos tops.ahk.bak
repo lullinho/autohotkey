@@ -11,6 +11,7 @@ return
 ::ex.:: ;abre o excel
 Run Excel.exe
 return
+
 ::varios.:: ;abre varios
 Run Excel.exe
 Run Notepad.exe
