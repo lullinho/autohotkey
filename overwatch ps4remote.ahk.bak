@@ -1,19 +1,18 @@
-#IfWinActive, PS4 Remote Play
-Loop  
-{
+#NoEnv ;perfomance and compatibility with future autohorkey updates
+#SingleInstance, Force ;não vai rodar o mesmo script duas vezes caso vc rode ele várias vezes, força para rodar esse script uma vez
 
-ControlSend,,{Enter down}, PS4 Remote Play
-ControlSend,,{Enter down}, PS4 Remote Play
-sleep 1
-ControlSend,,{Enter up}, PS4 Remote Play
-ControlSend,,{Enter up}, PS4 Remote Play
-sleep 1
-}
-return
 
-Capslock::
-Suspend
-Pause,,0
-return
+#IfWinActive, AHK_exe notepad.exe
+#c::
+Send, {Enter}{* 10000000}
+
+Return
+x
+
+#IfWinActive AHK_exe SciTE.exe
+#c::
+Send, x
+Return
 
 Esc::ExitApp
+
