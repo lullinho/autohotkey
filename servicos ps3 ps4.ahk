@@ -5,7 +5,7 @@
 
 
 :*O:comandos::
-MsgBox  1.1- dadospsn `n1-metodosplatina`n2-platinasdeps4`n3-platinapronta`n4-instrucaomypst`n 4.4-contarara`n5-avaliacaobo3`n6-instrucaoclasses`n6-bo3pronto
+MsgBox  1.1- dadospsn`n 1.2- dadosbo3 `n1-metodosplatina`n2-platinasdeps4`n3-platinapronta`n4-instrucaomypst`n 4.4-contarara`n4.1-avaliacaoplatina`n5-avaliacaobo3`n6-instrucaoclasses`n6-bo3pronto
 return
 
 
@@ -75,6 +75,26 @@ Send , ^v{Enter}
 Return
 
 
+;;;;;;;;;;;; AVALIAÇÃO PLATINAS
+:*O:avaliacaoplatina::
+clipboard =
+(
+Oi amigo,
+
+Você pode fazer uma avaliação no site por favor?
+https://lullinhogames.com.br/platinas (no final da página)
+
+Se puder, faz nos links também pf:
+https://g.page/lullinho/review?gm
+https://www.facebook.com/LULLINHOPSN/reviews
+https://www.youtube.com/watch?v=tDPVDN7I8SQ&t=2s
+
+Qualquer coisa só chamar!
+)
+Send , ^v{Enter}
+Return
+
+
 ;;;;;;;;;;pagamentos
 :*O:pagamentos::
 clipboard =
@@ -131,6 +151,26 @@ Se é platina completa pelo método 1 me manda o nome do jogo..
 )
 Send , ^v{Enter}
 Return
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;dados bo3 pedir
+:*O:dadosbo3::
+clipboard =
+(
+
+Oi amigo, preciso da sua PSN (*e-mail* e senha) para o procedimento. Pode ser qualquer conta PSN.
+Você quer o pacote especial 2? É o mais completo e mais vendido.
+Você pode olhar informações no link: https://lullinhogames.com.br/unlockallbo3
+
+Vem bastante caixa rara e suborno, garantindo armas do mercado negro. Especialista estripador infinito, classes modificadas com 6 vantagens e mais..
+Nota: se você quiser o unlock all numa conta que já tem level alto, que já jogou bastante, já fez bastante contratos e já tem armas do mercado negro, pode vir menos caixas raras e menos subornos do que descrito nos pacotes, depende da sua conta. Conta nova é garantido que vem todas caixas..
+Após o pagamento faz em até 1 hora e meia..
+
+)
+Send , ^v{Enter}
+Return
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;dados psn, solciitar dados
 :*O:contarara::
