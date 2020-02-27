@@ -15,7 +15,7 @@
 
 
 :*O:comandos::
-MsgBox 1.1W+MOUSE`n 1-  CTRL+T- Exibe uma MSGBOX com OCR do que selecionou e ainda copia o texto para o clibboard`n2- CTRL+S Salva a imagem no desktop com dataehora.png
+MsgBox 1- W+MOUSE`n2- CTRL+T- Exibe uma msg com OCR do que selecionou e ainda copia o texto para o clibboard`n3- CTRL+S Salva a imagem no desktop com dataehora.png`n4- W+ALT+MOUSE = salva imagem e anexa em um e-mail
 return
 
 /*  ; Credits   I borrowed heavily from ...
@@ -29,7 +29,7 @@ Learning one :=Screen Clippling  https://autohotkey.com/boards/viewtopic.php?f=6
 
 ;********************After clip exists***********************************
 #IfWinActive, ScreenClippingWindow ahk_class AutoHotkeyGUI
-^c::SCW_Win2Clipboard(0)      ; copy selected win to clipboard  Change to (1) if want border
+^c::SCW_Win2Clipboard(1)   ;borda, retirar borda azul ao colar imagem em algum lugar, fica sem borda, com 0 fica com borda   ; copy selected win to clipboard  Change to (1) if want border
 ^s:: SCW_Win2File(0)  ;save selected clipping on desktop as timestamp named .png  ; this was submited by tervon
 ^t:: ;Perform OCR on image
 pToken := Gdip_Startup()

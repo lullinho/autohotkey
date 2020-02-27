@@ -2,58 +2,36 @@
 #SingleInstance, Force
 #Persistent
 
-#x::	; <-- Open/Activate/Minimize Windows Snipping Tool
-{
-	SetTitleMatchMode, % (Setting_A_TitleMatchMode := A_TitleMatchMode) ? "RegEx" :
-	if WinExist("ahk_class Microsoft-Windows-.*SnipperToolbar")
-	{
-		WinGet, State, MinMax
-		if (State = -1)
-		{	
-			WinRestore
-			Send, ^n
-		}
-		else if WinActive()
-			WinMinimize
-		else
-		{
-			WinActivate
-			Send, ^n
-		}
-	}
-	else if WinExist("ahk_class Microsoft-Windows-.*SnipperEditor")
-	{
-		WinGet, State, MinMax
-		if (State = -1)
-			WinRestore
-		else if WinActive()
-			WinMinimize
-		else
-			WinActivate
-	}
-	else
-	{
-		Run, snippingtool.exe
-		if (SubStr(A_OSVersion,1,2)=10)
-		{
-			WinWait, ahk_class Microsoft-Windows-.*SnipperToolbar,,3
-			Send, ^n
-		}
-	}
-	SetTitleMatchMode, %Setting_A_TitleMatchMode%
-	return
-}
 
-#s::
-if WinExist( "Snipping Tool" )
-{
-	ControlClick, x40 y40, Snipping Tool
-}
-else 
-{
-	Run SnippingTool.exe /clip
-}
-return
 ;;;;; inicilizar o site no chrome
 #C::Run, www.trello.com
 #e::Run, mailto:felipelullio@hotmail.com
+
+:*O:instruemail::
+clipboard =
+(
+1- Faça uma atualização do Windows:
+> Digite na barra de pesquisa do Windows "windows update". Clique no primeiro link "verificar se há atualizações" e faça a atualização.
+
+2- Faça uma verificação de vírus no seu computador, utilize o seu antivírus e faça uma varredura. 
+> Caso não tenha um antivírus ou utilize o Windows 10, faça toda a verificação no Windows Defender, olhe nesse link todas as intruções.  (https://support.microsoft.com/pt-br/help/4013263/windows-10-stay-protected-with-windows-security)
+)
+
+Send, ^v{Enter}
+Return
+
+:*O:problemaerroemail::
+clipboard =
+(
+Seu e-mail foi bloqueado por segurança. Está impossibilitado de enviar e-mails... 
+Pode ser algum tipo de vírus na sua máquina que tenta acessar as informações do seu e-mail ou por inúmeras tentativas de acesso a seu e-mail..
+*Você pode enviar e-mails normalmente pelo WebMail da UOL*. 
+No seu navegador, acesse o link: https://email.uolhost.com.br/ , digite o seu e-mail e senha.
+Pelo celular, baixe o aplicativo UOL MAIL PRO. Basta acessar o app Play Store/App Store e digitar UOL MAIL PRO na busca e baixar o app.
+
+Já solicitei o desbloqueio do seu e-mail, dentro de 20-25 minutos será liberado todos os recursos para Outlook e outros.. Só aguardar..
+
+Até lá, acesse o seu e-mail pelo WebMail da UOL e também faça os seguintes procedimentos de segurança..:
+)
+Send, ^v{Enter}
+Return
