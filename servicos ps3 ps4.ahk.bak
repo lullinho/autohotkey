@@ -5,7 +5,20 @@
 
 
 :*O:comandos::
-MsgBox  1.1- dadospsn`n 1.2- dadosbo3 `n1-metodosplatina`n2-platinasdeps4`n3-platinapronta`n4-instrucaomypst`n 4.4-contarara`n4.1-avaliacaoplatina`n5-avaliacaobo3`n6-instrucaoclasses`n6-bo3pronto
+MsgBox  
+`n 1.1- dadosplatina
+`n 1.2- dadosbo3 
+`n 1.3- pagamentos 
+`n1-metodosplatina
+`n2-platinasdeps4
+`n3-platinapronta
+`n4-instrucaomypst
+`n 4.4-contarara
+`n4.1-avaliacaoplatina
+`n5-avaliacaobo3
+`n6-instrucaoclasses
+`n6-bo3pronto
+`nbo3prontofc
 return
 
 
@@ -99,17 +112,17 @@ Return
 :*O:pagamentos::
 clipboard =
 (
-- Você pagar por depósito bancário bradesco, itaú ou nubank.
-Também pode pagar por boleto ou cartão de crédito através do Mercado Livre/ Mercado pago.
+- Você pode pagar por depósito bancário bradesco, itaú ou nubank.
 Dados para depósito neste link: https://drive.google.com/open?id=1QvG7d6X-NctQOwnS9NwjbKAdTzjarRn7
+
+- Também pode pagar por boleto ou cartão de crédito através do Mercado Livre/ Mercado pago.
 
 - Envie dinheiro pelo Mercado Pago(boleto, cartão de crédito ou saldo mp)
 No site mercadopago.com.br ou app mercado pago > Toque em "ENVIAR DINHEIRO" ou clique neste link: https://www.mercadopago.com.br/money-transfer#from-section=menu  
-> Digite o meu e-mail "lullinho@outlook.com.br" , o valor, motivo(enviar dinheiro a um amigo) e mensagem qualquer(se possível com os dados da sua psn e como deseja o serviço) > escolha a forma de pagamento e pague.
+> Digite o meu e-mail "lullinho@outlook.com.br" , o valor do serviço que deseja, motivo(enviar dinheiro a um amigo) e mensagem qualquer(se possível com os dados da sua psn e como deseja o serviço) > escolha a forma de pagamento e pague.
 
 - Pague pelo qr code, baixe o qr code neste link: https://lullinhogames.com.br/download/qrcodeMp.pdf
 Abra o app mercado livre ou mercado pago, toque em "pague com qr code" "pagar com código" > digite o valor que deseja pagar e pague..
-
 
 )
 Send , ^v{Enter}
@@ -148,6 +161,8 @@ Pode ficar online e jogar normal durante o procedimento..
 Vou te avisar quando estiver pronto ok.. é só aguardar..
 Me passa a sua PSN e como você quer que seja feita a platina.. se é troféus específicos, me manda o nome do jogo e nome do troféu em inglês e dia e hora que quer em cada troféu...
 Se é platina completa pelo método 1 me manda o nome do jogo..
+
+Informações dos métodos e preços olhar no link pf: https://lullinhogames.com.br/platinas
 )
 Send , ^v{Enter}
 Return
@@ -225,6 +240,30 @@ https://www.youtube.com/watch?v=tDPVDN7I8SQ&t=2s
 )
 Send , ^v{Enter}
 Return
+
+
+;;;;;;;;; BO3 SERVIÇO PRONTO COM AVALIAÇÃO
+
+:*O:bo3fc::
+clipboard =
+(
+O serviço está pronto ok. Pode entrar e conferir. Qualquer dúvida só me chamar.
+
+Para liberar mais caixas e subornos no mercado negro, entra em uma partida online qualquer e sai do jogo.. Quando sair do jogo e for no mercado negro, vai ter mais 10 caixas e 1 suborno.. fica fazendo isso, entra em uma partida e sai.. para ir liberando mais caixas..
+
+Você pode fazer avaliação no Google/Facebook/Site/Youtube por favor?
+
+Segue os links para avaliar:
+https://g.page/lullinho/review?gm
+https://www.facebook.com/LULLINHOPSN/reviews
+https://lullinhogames.com.br/unlockallbo3
+https://www.youtube.com/watch?v=tDPVDN7I8SQ&t=2s
+
+
+)
+Send , ^v{Enter}
+Return
+
 
 ;;;;;;;;; VOCE FAZ PLATINAS DE PS4?
 

@@ -36,7 +36,7 @@ Esc::ExitApp
 Loop
 {
 	; pressionar o bola, o esc precisa do setkeydelay, se nao, nao vai funcionar
-ControlSend,,{Esc}, Uso remoto do PS4
+;ControlSend,,{Esc}, Uso remoto do PS4
 SetKeyDelay, 0, 800
 ControlSend,,{Enter down}, Uso remoto do PS4
 sleep 10
