@@ -5,20 +5,9 @@
 
 
 :*O:comandos::
-MsgBox  
-`n 1.1- dadosplatina
-`n 1.2- dadosbo3 
-`n 1.3- pagamentos 
-`n1-metodosplatina
-`n2-platinasdeps4
-`n3-platinapronta
-`n4-instrucaomypst
-`n 4.4-contarara
-`n4.1-avaliacaoplatina
-`n5-avaliacaobo3
-`n6-instrucaoclasses
-`n6-bo3pronto
-`nbo3prontofc
+MsgBox 1.1- dadosplatina`n 1.2- dadosbo3 `n 1.3- pagamentos `n 2.0- metodosplatina`n 2.1- platinasdeps4`n 2.2- instrucaomypst`n 2.5- contarara`n`n 2.3- platinapronta`n2.4-  bo3pronto`n2.5-  bo3psc (bo3 sem caixas liberadas)`n4.1-  avaliacaoplatina`n5-    avaliacaobo3`n6-    instrucaoclasses
+
+
 return
 
 
@@ -244,7 +233,7 @@ Return
 
 ;;;;;;;;; BO3 SERVIÇO PRONTO COM AVALIAÇÃO
 
-:*O:bo3fc::
+:*O:bo3psc::
 clipboard =
 (
 O serviço está pronto ok. Pode entrar e conferir. Qualquer dúvida só me chamar.

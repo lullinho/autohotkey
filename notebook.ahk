@@ -2,7 +2,7 @@
 #SingleInstance, Force
 #Persistent
 
-:*O:commands::
+:*O:ordems::
 MsgBox 1- 
 Return
 
@@ -35,6 +35,26 @@ Pelo celular, baixe o aplicativo UOL MAIL PRO. Basta acessar o app Play Store/Ap
 Já solicitei o desbloqueio do seu e-mail, dentro de 20-25 minutos será liberado todos os recursos para Outlook e outros.. Só aguardar..
 
 Até lá, acesse o seu e-mail pelo WebMail da UOL e também faça os seguintes procedimentos de segurança..:
+)
+Send, ^v{Enter}
+Return
+
+:*O:gastotransporte::
+clipboard = 
+(
+Olá,
+Boa tarde. 
+
+Conforme solicitado, segue o link contendo os gastos que tive com transporte, referente ao mês de fevereiro.
+No canto inferior da tela, possui as pastas com os respectivos meses e as despesas correspondentes.
+https://docs.google.com/spreadsheets/d/1wX5XpcPGy29FXV8oyq6r4OAprrkI9ycmsBsk1mVUB1E/edit?usp=sharing
+
+Nome: FELIPE GOMES LULLIO
+Agência: 7853
+Conta: 18539-0
+CPF: 365.267.098-18
+Banco: Itaú (479)
+
 )
 Send, ^v{Enter}
 Return

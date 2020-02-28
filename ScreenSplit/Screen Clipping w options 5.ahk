@@ -14,7 +14,7 @@
 #Include Tesseract.ahk
 
 
-:*O:comandos::
+:*O:commands::
 MsgBox 1- W+MOUSE`n2- CTRL+T- Exibe uma msg com OCR do que selecionou e ainda copia o texto para o clibboard`n3- CTRL+S Salva a imagem no desktop com dataehora.png`n4- W+ALT+MOUSE = salva imagem e anexa em um e-mail
 return
 
