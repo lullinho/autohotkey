@@ -5,7 +5,29 @@
 
 
 :*O:comandos::
+<<<<<<< HEAD
+MsgBox  
+`n 1.1- dadosplatina
+`n 1.2- dadosbo3 
+`n 1.3- pagamentos 
+`n 2.0- metodosplatina
+`n 2.1- platinasdeps4
+`n 2.2- instrucaomypst
+`n 2.3- platinapronta
+`n 2.5- contarara
+`n4.1-avaliacaoplatina
+`n5-avaliacaobo3
+`n6-instrucaoclasses
+`n6-bo3pronto
+`nbo3prontofc
+=======
 MsgBox 1.1- dadosplatina`n 1.2- dadosbo3 `n 1.3- pagamentos `n 2.0- metodosplatina`n 2.1- platinasdeps4`n 2.2- instrucaomypst`n 2.5- contarara`n`n 2.3- platinapronta`n2.4-  bo3pronto`n2.5-  bo3psc (bo3 sem caixas liberadas)`n4.1-  avaliacaoplatina`n5-    avaliacaobo3`n6-    instrucaoclasses
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f4ef6ad04553c3395ee648f7ad59e19613603ec2
+>>>>>>> b7dd13e1fcb53f0261eb5af42208318aadbef13f
 return
 
 
