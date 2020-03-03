@@ -102,10 +102,10 @@ clipboard =
 - Você pode pagar por depósito bancário bradesco, itaú ou nubank.
 Dados para depósito neste link: https://drive.google.com/open?id=1QvG7d6X-NctQOwnS9NwjbKAdTzjarRn7
 
-- Também pode pagar por boleto ou cartão de crédito através do Mercado Livre/ Mercado pago.
+- Também pode pagar por boleto/cartão de crédito/saldo através do Mercado Livre/ Mercado pago.
 
-- Envie dinheiro pelo Mercado Pago(boleto, cartão de crédito ou saldo mp)
-No site mercadopago.com.br ou app mercado pago > Toque em "ENVIAR DINHEIRO" ou clique neste link: https://www.mercadopago.com.br/money-transfer#from-section=menu  
+- Envie dinheiro pelo Mercado Pago
+> No site mercadopago.com.br ou app mercado pago > Toque em "ENVIAR DINHEIRO" ou clique neste link: https://www.mercadopago.com.br/money-transfer#from-section=menu  
 > Digite o meu e-mail "lullinho@outlook.com.br" , o valor do serviço que deseja, motivo(enviar dinheiro a um amigo) e mensagem qualquer(se possível com os dados da sua psn e como deseja o serviço) > escolha a forma de pagamento e pague.
 
 - Pague pelo qr code, baixe o qr code neste link: https://lullinhogames.com.br/download/qrcodeMp.pdf

@@ -58,3 +58,24 @@ Banco: Itaú (479)
 )
 Send, ^v{Enter}
 Return
+
+
+:*O:trocarsenhas::
+clipboard = 
+(
+Olá,
+Bom dia.
+
+Como você esqueceu sua senha, eu a resetei. Sua nova senha é "novtech1" sem as aspas.
+
+Você pode alterar a senha do seu e-mail acessando esse link pelo seu navegador:
+https://mailpro.uol.com.br/
+Digite o seu e-mail e sua nova senha(novtech1).
+> Clique em "Configurações" (canto superior direito da tela).
+> Na aba "E-mail:", clique em "Senha".
+> Digite a senha atual(novtech1) e a nova senha.
+> Clique em no botão vermelho "Salvar alterações"
+)
+Send, ^v{Enter}
+Return
+
