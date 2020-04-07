@@ -3,7 +3,7 @@
 #Persistent
 
 :*O:ordems::
-MsgBox 1-  instemail              :instrucoes de seguranca, antivirus`n2-  blockemail              :seu email bloqueado seguranca`n3- trocarsenha              :sua novasenha eh:`n4- gastotransporte `n5-  cnov              :contato da novtech
+MsgBox 1-  instemail              :instrucoes de seguranca, antivirus`n2-  blockemail              :seu email bloqueado seguranca`n3- trocarsenha              :sua novasenha eh:`n4- gastotransporte `n5-  cnov              :contato da novtech`6-   linksnv - links da novtech, folders
 Return
 
 
@@ -88,4 +88,26 @@ Digite o seu e-mail e sua nova senha(novtech1).
 )
 Send, ^v{Enter}
 Return
+
+
+:*O:linksnv::
+clipboard = 
+(
+Link Logos Novtech:
+https://drive.google.com/open?id=1J91ItGwar_FDiqzKKkiqrq6bNeoc_YbD
+
+Mega Link: Todos folders
+https://mega.nz/#F!D9hllTgB!jyUmCV-Zou8vl7mWMVb2Iw
+
+
+Avaliações
+NOVTECH RJ: https://g.page/novtechrj/review?gm
+NOVTECH SP: https://g.page/novtech/review?gm
+Facebook: https://www.facebook.com/pg/novtechbrasil/reviews/
+)
+Send, ^v{Enter}
+Return
+
+
+
 
