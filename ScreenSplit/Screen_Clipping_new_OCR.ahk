@@ -11,9 +11,12 @@
 #SingleInstance, Force
 #NoEnv
 #SingleInstance Force
+
+/*
 SetWorkingDir %A_ScriptDir%
 if not A_IsAdmin
 	Run *RunAs "%A_ScriptFullPath%" ; (A_AhkPath is usually optional if the script has the .ahk extension.) You would typically check  first.
+    */
 
 /*  ; Credits   I borrowed heavily from ...
 	Screen clipping by Learning one  https://autohotkey.com/boards/viewtopic.php?f=6&t=12088
@@ -24,6 +27,10 @@ if not A_IsAdmin
 #^Lbutton::SCW_ScreenClip2Win(clip:=0,email:=0,OCR:=1) ; Win+Control+Left click- Perform OCR on selection and store in clipboard
 #!Lbutton::SCW_ScreenClip2Win(clip:=0,email:=1,OCR:=0) ; Wind+Alt+left click =saves images and attach to email (path of jpg on clipboard)
 #Lbutton::SCW_ScreenClip2Win(clip:=1,email:=0,OCR:=0)  ; Win+left click mouse=auto copy to clipboard
+
+#C::
+Run mmsys.cpl
+Return
 
 ;********************After clip exists***********************************
 #IfWinActive, ScreenClippingWindow ahk_class AutoHotkeyGUI

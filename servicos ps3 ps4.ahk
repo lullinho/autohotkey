@@ -1,5 +1,5 @@
 ﻿#SingleInstance Force
-#NoTrayIcon
+;#NoTrayIcon
 #NoEnv
 
 
