@@ -5,14 +5,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance Force
 
 #N::  
-IfWinExist, estoque novtech.xlsx - Excel
+
+IfWinNotExist, ahk_exe EXCEL.EXE
 {
-	 WinMinimize
-}
-IfWinNotExist, ("ahk_class XLMAIN")
-{
-Run, open "D:\Github\autohotkey\Novtech\estoque novtech.xlsx", Minimize
+Run, open "D:\Github\autohotkey\Novtech\estoque novtech.xlsx"
 WinWaitActive, estoque novtech.xlsx - Excel
+WinMinimize
 }
 
 InputBox, What, Código da Peça, Por favor insira o código da peça, , 250, 150 ;variavel what, insere um dado nessa variavel, 
@@ -22,4 +20,5 @@ FoundCell := ComObjActive("Excel.Application").ActiveSheet.Range("B:B").Find(Wha
 
 MsgBox, 0, Localização da Peça:, % SubStr(FoundCell.Offset(0, -1).Value, 3, 7), 5 ; retorna o valor que esta na coluna vizinha, ao lado esquerdo(-1), se quiser ao lado direito colocar (1)
 
+Return
 ; SubStr (substrai, apenas retorna do terceiro caractere até o sétimo caractere)

@@ -1,6 +1,18 @@
 #NoEnv
 #SingleInstance, Force
 #Persistent
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+; Botão de abaixar volume = FN+F2
+baixarVolume = Volume_Down
+baixarVolume::
+Send {F2}
+Return
+
+Volume_Mute::
+Send {Volume_Down}
+Return
 
 :*O:ordems::
 MsgBox 2-  blockemail              :seu email bloqueado seguranca`n3- esqueceusenha              :sua novasenha eh:`n3.1-    senhanova        :    novasenha da novtech `n4- gastotransporte `n5-  cnov              :contato da novtech`6-   linksnv - links da novtech, folders
@@ -16,6 +28,7 @@ RJ: (21) 3907-5151
 comercial@novtech.com.br
 https://novtech.com.br
 Redes Sociais: NovtechBrasil
+Comunicados E-mail: https://bit.ly/EmailNovtech
 )
 Send, ^v
 Return
@@ -82,7 +95,7 @@ Digite o seu usuário e sua senha(novtech1).
 > Digite a senha atual(novtech1) e a nova senha que deseja colocar.
 > Clique no botão vermelho "Salvar alterações"
 
-Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/novtechEmail
+Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/EmailNovtech
 
 )
 Send, ^v{Enter}
@@ -103,7 +116,7 @@ Digite o seu usuário e sua senha(novtech1).
 > Digite a senha atual(novtech1) e a nova senha que deseja colocar.
 > Clique no botão vermelho "Salvar alterações"
 
-Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/novtechEmail
+Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/EmailNovtech
 
 )
 Send, ^v{Enter}
@@ -119,7 +132,7 @@ https://drive.google.com/open?id=1J91ItGwar_FDiqzKKkiqrq6bNeoc_YbD
 Mega Link: Todos folders
 https://mega.nz/#F!D9hllTgB!jyUmCV-Zou8vl7mWMVb2Iw
 
-Comunciados e-mail novtech: https://bit.ly/novtechEmail
+Comunciados e-mail novtech: https://bit.ly/EmailNovtech
 
 Avaliações
 NOVTECH RJ: https://g.page/novtechrj/review?gm

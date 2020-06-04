@@ -1,6 +1,13 @@
 #NoEnv
 #SingleInstance, Force
 #Persistent
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+; Botão de abaixar volume = FN+F2
+Volume_Down::
+Send {F2}
+Return
 
 :*O:ordems::
 MsgBox 2-  blockemail              :seu email bloqueado seguranca`n3- esqueceusenha              :sua novasenha eh:`n3.1-    senhanova        :    novasenha da novtech `n4- gastotransporte `n5-  cnov              :contato da novtech`6-   linksnv - links da novtech, folders
