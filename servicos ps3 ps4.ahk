@@ -257,8 +257,8 @@ Return
 :*O:platinasdeps4::
 clipboard =
 (
-Não faz platinas de ps4. Faz platinas de qualquer jogo de PS3.
-Dá para fazer alguns de ps4, aqueles que tem bandeira de ps3/ps4 juntos, que são cross..
+Não faz platinas de ps4/ps vita. Faz platinas de qualquer jogo de PS3.
+Dá para fazer alguns de ps4/psvita, aqueles que tem bandeira de ps3/ps4 juntos, que são cross..
 Jogos que se você pegar troféu no ps3 e no ps4 vai para o mesmo lugar..
 Exemplo: destiny de ps4, resident evil 0 de ps4, final fantasy xx hd de ps4..
 Olha essas imagens que você vai entender melhor: https://drive.google.com/open?id=1WeXB3wuxbdaEYGxAd8ngTBi2P6Bsi2pt
