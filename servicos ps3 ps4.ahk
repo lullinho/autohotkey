@@ -5,7 +5,7 @@
 
 
 :*O:comandos::
-MsgBox 1.1- dadosplatina`n 1.2- dadosbo3 `n 1.3- pagamentos `n 2.0- metodosplatina`n 2.1- platinasdeps4`n 2.2- instrucaomypst`n 2.5- contarara`n`n 2.3- platinapronta`n2.4-  bo3pronto`n2.5-  bo3psc (bo3 sem caixas liberadas)`n4.1-  avaliacaoplatina`n5-    avaliacaobo3`n6-    instrucaoclasses
+MsgBox 1.1- dadosplatina`n 1.2- dadosbo3 `n 1.3- pagamentos `n 2.0- metodosplatina`n 2.1- platinasdeps4`n 2.2- instrucaomypst`n 2.5- contarara`n`n 2.3- platinapronta`n2.4-  bo3pronto`n2.5-  bo3psc (bo3 sem caixas liberadas)`n4.1-  avaliacaoplatina`n5-    avaliacaobo3`n6-    instrucaoclasses`n7-    platinacomdlc
 return
 
 
@@ -69,6 +69,19 @@ O serviço está pronto ok. Basta sincronizar os seus troféus novamente no cons
 Se quer para mypst/sites de troféus, sempre confira se está tudo certo pelo console, não sincronize nos sites.
 
 Qualquer coisa só me chamar.
+
+)
+Send , ^v{Enter}
+Return
+
+;;;;;;;;;;;; LIBERAR PLATINA SEM DLC
+:*O:platinacomdlc::
+clipboard =
+(
+Eu não consigo liberar a platina do jogo sem liberar os troféus DLC's amigo.
+Mesmo que não precise dos troféus dlc para liberar a platina, só é possível fazer desta forma
+Para eu liberar o troféu platina do jogo, preciso liberar todos os outros troféus, inclusive os dlcs. Outra opção seria deixa um troféu fácil para você mesmo pegar a platina..
+Ai ficaria um troféu faltando e o troféu platina.
 
 )
 Send , ^v{Enter}
@@ -164,7 +177,8 @@ Oi amigo, preciso da sua PSN (*e-mail* e senha) para o procedimento. Pode ser qu
 Você quer o pacote especial 2? É o mais completo e mais vendido.
 Você pode olhar informações no link: https://lullinhogames.com.br/unlockallbo3
 
-Vem bastante caixa rara e suborno, garantindo armas do mercado negro. Especialista estripador infinito, classes modificadas com 6 vantagens e mais..
+Vem bastante caixa rara e suborno, garantindo armas do mercado negro. Especialista estripador,camuflagem ativa, foco de combate infinito, classes modificadas com 6 vantagens...
+É feito em todos os modos, campanha, zumbi e multijogador, os desafios ficam 100 porcento. A conta fica top.
 Nota: se você quiser o unlock all numa conta que já tem level alto, que já jogou bastante, já fez bastante contratos e já tem armas do mercado negro, pode vir menos caixas raras e menos subornos do que descrito nos pacotes, depende da sua conta. Conta nova é garantido que vem todas caixas..
 Após o pagamento faz em até 1 hora e meia..
 
