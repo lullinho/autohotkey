@@ -5,30 +5,26 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; Botão de abaixar volume = FN+F2
-baixarVolume = Volume_Down
-baixarVolume::
+Volume_Down::
 Send {F2}
 Return
 
-Volume_Mute::
-Send {Volume_Down}
-Return
-
 :*O:ordems::
-MsgBox 2-  blockemail              :seu email bloqueado seguranca`n3- esqueceusenha              :sua novasenha eh:`n3.1-    senhanova        :    novasenha da novtech `n4- gastotransporte `n5-  cnov              :contato da novtech`6-   linksnv - links da novtech, folders
+MsgBox 2-  blockemail              :seu email bloqueado seguranca`n3- esqueceusenha              :sua novasenha eh:`n3.1-    senhanova        :    novasenha da novtech `n4- gastotransporte `n5-  cnov              :contato da novtech`n6-   linksnv - links da novtech, folders`n7-    linksemail   -> todos comunicados email
 Return
 
-
+diadehoje := A_MMMM
 
 :*O:cnov::
 clipboard=
 (
 SP: (11) 2638-7030
 RJ: (21) 3907-5151
+WhatsApp: (21) 98369-0506
 comercial@novtech.com.br
 https://novtech.com.br
 Redes Sociais: NovtechBrasil
-Comunicados E-mail: https://bit.ly/EmailNovtech
+Comunicados E-mail: https://bit.ly/E-mail-Novtech
 )
 Send, ^v
 Return
@@ -85,7 +81,7 @@ clipboard =
 (
 Olá,
 
-Como você esqueceu sua senha, eu a resetei. Sua nova senha é "novtech1" sem as aspas.
+Como você esqueceu sua senha, ela foi resetada. Sua nova senha é "novtech1" sem as aspas.
 
 Você pode alterar a senha do seu e-mail acessando esse link por qualquer navegador:
 https://mailpro.uol.com.br/novtech.com.br
@@ -95,7 +91,10 @@ Digite o seu usuário e sua senha(novtech1).
 > Digite a senha atual(novtech1) e a nova senha que deseja colocar.
 > Clique no botão vermelho "Salvar alterações"
 
-Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/EmailNovtech
+Salve a sua senha em algum lugar. Interessante salvar ela no navegador que você usa ao acessar o webmail. 
+
+Como alterar sua senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
+Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/E-mail-Novtech
 
 )
 Send, ^v{Enter}
@@ -116,7 +115,8 @@ Digite o seu usuário e sua senha(novtech1).
 > Digite a senha atual(novtech1) e a nova senha que deseja colocar.
 > Clique no botão vermelho "Salvar alterações"
 
-Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/EmailNovtech
+Como alterar sua senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
+Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/E-mail-Novtech
 
 )
 Send, ^v{Enter}
@@ -132,7 +132,7 @@ https://drive.google.com/open?id=1J91ItGwar_FDiqzKKkiqrq6bNeoc_YbD
 Mega Link: Todos folders
 https://mega.nz/#F!D9hllTgB!jyUmCV-Zou8vl7mWMVb2Iw
 
-Comunciados e-mail novtech: https://bit.ly/EmailNovtech
+Comunciados e-mail novtech: https://bit.ly/E-mail-Novtech
 
 Avaliações
 NOVTECH RJ: https://g.page/novtechrj/review?gm
@@ -142,6 +142,53 @@ Facebook: https://www.facebook.com/pg/novtechbrasil/reviews/
 Send, ^v{Enter}
 Return
 
+:*O:linksemail::
+clipboard = 
+(
+Comunicado principal com todos outros: https://bit.ly/E-mail-Novtech    | https://mailchi.mp/39038e080536/informaes-e-mail-novtech
+
+Como configurar Outlook: https://mailchi.mp/cb9ef1b694af/informao-sobre-como-configurar-outlook
+
+Como deve ser a assinatura: https://mailchi.mp/19b2984dcaac/assinatura-de-e-mail-novtech
+
+Como trocar senha, esqueceu senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
+
+Como configurar email celular iOs Android Gmail: https://mailchi.mp/e7d8b774beab/como-configurar-e-mail-novtech-no-celular
+
+Adicionar novtech aos remetentes confiáveis: https://mailchi.mp/00bf69388149/adicione-a-novtech-aos-remetentes-confiveis-outlook
+
+Como griar grupos de email Outlook/Webmil: https://mailchi.mp/f3545e00c1aa/como-criar-grupos-no-outlook-e-webmail
+
+Como criar regras de email Outlook/Webmail: https://mailchi.mp/9d0f5887c10f/como-criar-regras-no-outlook-e-webmail
+
+Erros ao enviar emails: https://mailchi.mp/2ce23e31a107/erro-ao-enviar-e-mail-outlook
+
+
+)
+Send, ^v{Enter}
+Return
+
+:*O:entregahj::
+clipboard =
+(
+	Bom dia. Pode entregar hoje!
+	
+	Av. Nossa Sra. da Encarnação, 925 - Loja 23 - Vila das Merces, São Paulo - SP, 04180-081
+	No shopping via 80, loja 23, Novtech
+	
+	
+)
+
+Send,  ^v 
+FormatTime, OutputVar, , dd/MM/yyyy
+SendInput %OutputVar%
+Send, {Enter}
+
+Return
 
 
 
+
+
+
+ 
