@@ -168,7 +168,7 @@ Erros ao enviar emails: https://mailchi.mp/2ce23e31a107/erro-ao-enviar-e-mail-ou
 Send, ^v{Enter}
 Return
 
-:*O:entregahj::
+:*O:ehj.::
 clipboard =
 (
 	Bom dia. Pode entregar hoje!
