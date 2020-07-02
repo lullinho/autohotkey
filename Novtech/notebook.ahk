@@ -181,10 +181,17 @@ clipboard =
 
 Send,  ^v 
 FormatTime, OutputVar, , dd/MM/yyyy
-SendInput %OutputVar%
+SendInput Data: %OutputVar%  `n
 Send, {Enter}
 
 Return
+
+
+
+
+
+
+
 
 
 
