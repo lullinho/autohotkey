@@ -28,7 +28,7 @@ if not A_IsAdmin
 #!Lbutton::SCW_ScreenClip2Win(clip:=0,email:=1,OCR:=0) ; Wind+Alt+left click =saves images and attach to email (path of jpg on clipboard)
 #Lbutton::SCW_ScreenClip2Win(clip:=1,email:=0,OCR:=0)  ; Win+left click mouse=auto copy to clipboard
 
-#C::
+#b::
 Run mmsys.cpl
 Return
 
