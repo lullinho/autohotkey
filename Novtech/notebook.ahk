@@ -171,10 +171,14 @@ Return
 :*O:ehj.::
 clipboard =
 (
-	Bom dia. Pode entregar hoje!
+	Bom dia. Pode entregar hoje, por favor!
 	
 	Av. Nossa Sra. da Encarnação, 925 - Loja 23 - Vila das Merces, São Paulo - SP, 04180-081
 	No shopping via 80, loja 23, Novtech
+	
+	Prato: Omelete fitness 
+	Obs: se puder colocar bastante legumes por favor rs e incluir os talheres de plástico também! 
+	Obrigado!
 	
 	
 )
