@@ -177,8 +177,10 @@ clipboard =
 	No shopping via 80, loja 23, Novtech
 	
 	Prato: Omelete fitness 
+	
 	Obs: se puder colocar bastante legumes por favor rs e incluir os talheres de plástico também! 
-	Obrigado!
+	
+	Obrigado!`n
 	
 	
 )
