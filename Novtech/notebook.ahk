@@ -24,7 +24,7 @@ WhatsApp: (21) 98369-0506
 comercial@novtech.com.br
 https://novtech.com.br
 Redes Sociais: NovtechBrasil
-Comunicados E-mail: https://bit.ly/E-mail-Novtech
+Comunicados E-mail: http://bit.ly/Novtech-E-mail
 )
 Send, ^v
 Return
@@ -94,7 +94,7 @@ Digite o seu usuário e sua senha(novtech1).
 Salve a sua senha em algum lugar. Interessante salvar ela no navegador que você usa ao acessar o webmail. 
 
 Como alterar sua senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
-Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/E-mail-Novtech
+Mais informações sobre o E-mail profissional Novtech acesse o link: http://bit.ly/Novtech-E-mail
 
 )
 Send, ^v{Enter}
@@ -116,7 +116,7 @@ Digite o seu usuário e sua senha(novtech1).
 > Clique no botão vermelho "Salvar alterações"
 
 Como alterar sua senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
-Mais informações sobre o E-mail profissional Novtech acesse o link: https://bit.ly/E-mail-Novtech
+Mais informações sobre o E-mail profissional Novtech acesse o link: http://bit.ly/Novtech-E-mail
 
 )
 Send, ^v{Enter}
@@ -132,7 +132,7 @@ https://drive.google.com/open?id=1J91ItGwar_FDiqzKKkiqrq6bNeoc_YbD
 Mega Link: Todos folders
 https://mega.nz/#F!D9hllTgB!jyUmCV-Zou8vl7mWMVb2Iw
 
-Comunciados e-mail novtech: https://bit.ly/E-mail-Novtech
+Comunciados e-mail novtech: http://bit.ly/Novtech-E-mail
 
 Avaliações
 NOVTECH RJ: https://g.page/novtechrj/review?gm
@@ -145,11 +145,11 @@ Return
 :*O:linksemail::
 clipboard = 
 (
-Comunicado principal com todos outros: https://bit.ly/E-mail-Novtech    | https://mailchi.mp/39038e080536/informaes-e-mail-novtech
+Comunicado principal com todos outros: http://bit.ly/Novtech-E-mail    | https://mailchi.mp/2cc9946bb751/informao-e-mail-profissional-novtech-consulte-todas-informaes
 
 Como configurar Outlook: https://mailchi.mp/cb9ef1b694af/informao-sobre-como-configurar-outlook
 
-Como deve ser a assinatura: https://mailchi.mp/19b2984dcaac/assinatura-de-e-mail-novtech
+Como deve ser a assinatura: https://mailchi.mp/cd02ec06401b/como-deve-ser-a-sua-assinatura-como-adicionar-a-sua-assinatura-no-outlook-e-webmail
 
 Como trocar senha, esqueceu senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
 
@@ -161,7 +161,13 @@ Como griar grupos de email Outlook/Webmil: https://mailchi.mp/f3545e00c1aa/como-
 
 Como criar regras de email Outlook/Webmail: https://mailchi.mp/9d0f5887c10f/como-criar-regras-no-outlook-e-webmail
 
-Erros ao enviar emails: https://mailchi.mp/2ce23e31a107/erro-ao-enviar-e-mail-outlook
+Erros ao enviar emails: https://mailchi.mp/c89eeab83673/como-resolver-os-erros-do-outlook-confira-esses-erros
+
+Como organizar seus e-mails: https://mailchi.mp/f94bede85ed0/como-organizar-seus-e-mails-deletar-e-mails-criar-pastas
+
+Como fazer backup dos seus e-mails: https://mailchi.mp/1e04251cefcb/como-fazer-backup-do-seu-e-mail-como-exportar-e-importar
+
+
 
 
 )
