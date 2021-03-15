@@ -1,10 +1,10 @@
-#NoEnv
+Ôªø#NoEnv
 #SingleInstance, Force
 #Persistent
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-; Bot„o de abaixar volume = FN+F2
+; Bot√£o de abaixar volume = FN+F2
 Volume_Down::
 Send {F2}
 Return
@@ -36,21 +36,21 @@ Return
 :*O:blockemail::
 clipboard =
 (
-Seu e-mail foi bloqueado por seguranÁa. VocÍ est· impossibilitado de enviar e-mails pelos gerenciadores de e-mail(outlook,gmail,etc)... 
-O bloqueio pode ser por algum tipo de vÌrus na sua m·quina que tenta acessar as informaÁıes do seu e-mail ou por v·rias tentativas de acesso ao seu e-mail inv·lidas..
-*VocÍ pode enviar e-mails normalmente pelo WebMail da UOL e pelo aplicativo*. 
+Seu e-mail foi bloqueado por seguran√ßa. Voc√™ est√° impossibilitado de enviar e-mails pelos gerenciadores de e-mail(outlook,gmail,etc)... 
+O bloqueio pode ser por algum tipo de v√≠rus na sua m√°quina que tenta acessar as informa√ß√µes do seu e-mail ou por v√°rias tentativas de acesso ao seu e-mail inv√°lidas..
+*Voc√™ pode enviar e-mails normalmente pelo WebMail da UOL e pelo aplicativo*. 
 No seu navegador, acesse o link: https://email.uolhost.com.br/ , digite o seu e-mail e senha.
 Pelo celular, baixe o aplicativo UOL MAIL PRO. Basta acessar o app Play Store/App Store e digitar UOL MAIL PRO na busca e baixar o app.
 
-*J· solicitei o desbloqueio do seu e-mail, dentro de 20-25 minutos ser· liberado todos os recursos e vocÍ poder· enviar e-mails normalmente pelos gerenciadores de e-mail..
+*J√° solicitei o desbloqueio do seu e-mail, dentro de 20-25 minutos ser√° liberado todos os recursos e voc√™ poder√° enviar e-mails normalmente pelos gerenciadores de e-mail..
 
-AtÈ l·, acesse o seu e-mail pelo WebMail da UOL e tambÈm faÁa os seguintes procedimentos de seguranÁa..: (importante que faÁa os procedimentos para n„o acontecer esse problema novamente):
+At√© l√°, acesse o seu e-mail pelo WebMail da UOL e tamb√©m fa√ßa os seguintes procedimentos de seguran√ßa..: (importante que fa√ßa os procedimentos para n√£o acontecer esse problema novamente):
 
-1- FaÁa uma atualizaÁ„o do Windows:
-> Digite na barra de pesquisa do Windows(Windows+S) "windows update". Clique no primeiro link "verificar se h· atualizaÁıes" e faÁa a atualizaÁ„o se houver.
+1- Fa√ßa uma atualiza√ß√£o do Windows:
+> Digite na barra de pesquisa do Windows(Windows+S) "windows update". Clique no primeiro link "verificar se h√° atualiza√ß√µes" e fa√ßa a atualiza√ß√£o se houver.
 
-2- FaÁa uma verificaÁ„o de vÌrus no seu computador, utilize o seu antivÌrus e faÁa uma varredura. 
-> Caso n„o tenha um antivÌrus, faÁa toda a verificaÁ„o no Windows Defender, olhe nesse link todas as intruÁıes e siga o passo a passo.  (https://support.microsoft.com/pt-br/help/4013263/windows-10-stay-protected-with-windows-security)
+2- Fa√ßa uma verifica√ß√£o de v√≠rus no seu computador, utilize o seu antiv√≠rus e fa√ßa uma varredura. 
+> Caso n√£o tenha um antiv√≠rus, fa√ßa toda a verifica√ß√£o no Windows Defender, olhe nesse link todas as intru√ß√µes e siga o passo a passo.  (https://support.microsoft.com/pt-br/help/4013263/windows-10-stay-protected-with-windows-security)
 )
 Send, ^v{Enter}
 Return
@@ -58,18 +58,18 @@ Return
 :*O:gastotransporte::
 clipboard = 
 (
-Ol·,
+Ol√°,
 Boa tarde. 
 
-Conforme solicitado, segue o link contendo os gastos que tive com transporte, referente ao mÍs de fevereiro.
+Conforme solicitado, segue o link contendo os gastos que tive com transporte, referente ao m√™s de fevereiro.
 No canto inferior da tela, possui as pastas com os respectivos meses e as despesas correspondentes.
 https://docs.google.com/spreadsheets/d/1wX5XpcPGy29FXV8oyq6r4OAprrkI9ycmsBsk1mVUB1E/edit?usp=sharing
 
 Nome: FELIPE GOMES LULLIO
-AgÍncia: 7853
+Ag√™ncia: 7853
 Conta: 18539-0
 CPF: 365.267.098-18
-Banco: Ita˙ (341)
+Banco: Ita√∫ (341)
 
 )
 Send, ^v{Enter}
@@ -79,22 +79,22 @@ Return
 :*O:esqueceusenha::
 clipboard = 
 (
-Ol·,
+Ol√°,
 
-Como vocÍ esqueceu sua senha, ela foi resetada. Sua nova senha È "novtech1" sem as aspas.
+Como voc√™ esqueceu sua senha, ela foi resetada. Sua nova senha √© "novtech1" sem as aspas.
 
-VocÍ pode alterar a senha do seu e-mail acessando esse link por qualquer navegador:
+Voc√™ pode alterar a senha do seu e-mail acessando esse link por qualquer navegador:
 https://mailpro.uol.com.br/novtech.com.br
-Digite o seu usu·rio e sua senha(novtech1).
-> Clique em "ConfiguraÁıes" (canto superior direito da tela).
+Digite o seu usu√°rio e sua senha(novtech1).
+> Clique em "Configura√ß√µes" (canto superior direito da tela).
 > Na aba "E-mail:", clique em "Senha".
 > Digite a senha atual(novtech1) e a nova senha que deseja colocar.
-> Clique no bot„o vermelho "Salvar alteraÁıes"
+> Clique no bot√£o vermelho "Salvar altera√ß√µes"
 
-Salve a sua senha em algum lugar. Interessante salvar ela no navegador que vocÍ usa ao acessar o webmail. 
+Salve a sua senha em algum lugar. Interessante salvar ela no navegador que voc√™ usa ao acessar o webmail. 
 
 Como alterar sua senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
-Mais informaÁıes sobre o E-mail profissional Novtech acesse o link: http://bit.ly/Novtech-E-mail
+Mais informa√ß√µes sobre o E-mail profissional Novtech acesse o link: http://bit.ly/Novtech-E-mail
 
 )
 Send, ^v{Enter}
@@ -103,20 +103,20 @@ Return
 :*O:senhanova::
 clipboard = 
 (
-Ol·,
+Ol√°,
 
-Sua nova senha È "novtech1" sem as aspas.
+Sua nova senha √© "novtech1" sem as aspas.
 
-VocÍ pode alterar a senha do seu e-mail acessando esse link por qualquer navegador:
+Voc√™ pode alterar a senha do seu e-mail acessando esse link por qualquer navegador:
 https://mailpro.uol.com.br/novtech.com.br
-Digite o seu usu·rio e sua senha(novtech1).
-> Clique em "ConfiguraÁıes" (canto superior direito da tela).
+Digite o seu usu√°rio e sua senha(novtech1).
+> Clique em "Configura√ß√µes" (canto superior direito da tela).
 > Na aba "E-mail:", clique em "Senha".
 > Digite a senha atual(novtech1) e a nova senha que deseja colocar.
-> Clique no bot„o vermelho "Salvar alteraÁıes"
+> Clique no bot√£o vermelho "Salvar altera√ß√µes"
 
 Como alterar sua senha: https://mailchi.mp/f2a429e2c901/como-trocar-senha-do-e-mail
-Mais informaÁıes sobre o E-mail profissional Novtech acesse o link: http://bit.ly/Novtech-E-mail
+Mais informa√ß√µes sobre o E-mail profissional Novtech acesse o link: http://bit.ly/Novtech-E-mail
 
 )
 Send, ^v{Enter}
@@ -134,7 +134,7 @@ https://mega.nz/#F!D9hllTgB!jyUmCV-Zou8vl7mWMVb2Iw
 
 Comunciados e-mail novtech: http://bit.ly/Novtech-E-mail
 
-AvaliaÁıes
+Avalia√ß√µes
 NOVTECH RJ: https://g.page/novtechrj/review?gm
 NOVTECH SP: https://g.page/novtech/review?gm
 Facebook: https://www.facebook.com/pg/novtechbrasil/reviews/
@@ -155,7 +155,7 @@ Como trocar senha, esqueceu senha: https://mailchi.mp/f2a429e2c901/como-trocar-s
 
 Como configurar email celular iOs Android Gmail: https://mailchi.mp/e7d8b774beab/como-configurar-e-mail-novtech-no-celular
 
-Adicionar novtech aos remetentes confi·veis: https://mailchi.mp/00bf69388149/adicione-a-novtech-aos-remetentes-confiveis-outlook
+Adicionar novtech aos remetentes confi√°veis: https://mailchi.mp/00bf69388149/adicione-a-novtech-aos-remetentes-confiveis-outlook
 
 Como griar grupos de email Outlook/Webmil: https://mailchi.mp/f3545e00c1aa/como-criar-grupos-no-outlook-e-webmail
 
@@ -179,12 +179,12 @@ clipboard =
 (
 	Bom dia. Pode entregar hoje, por favor!
 	
-	Av. Nossa Sra. da EncarnaÁ„o, 925 - Loja 23 - Vila das Merces, S„o Paulo - SP, 04180-081
+	Av. Nossa Sra. da Encarna√ß√£o, 925 - Loja 23 - Vila das Merces, S√£o Paulo - SP, 04180-081
 	No shopping via 80, loja 23, Novtech
 	
 	Prato: Omelete fitness 
 	
-	Obs: se puder colocar bastante legumes por favor rs e incluir os talheres de pl·stico tambÈm! 
+	Obs: se puder colocar bastante legumes por favor rs e incluir os talheres de pl√°stico tamb√©m! 
 	
 	Obrigado!`n
 	

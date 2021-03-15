@@ -1,0 +1,1 @@
+Edit FileInfo.txt file in MRS\plugins folder.
