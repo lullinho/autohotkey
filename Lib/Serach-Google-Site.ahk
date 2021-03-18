@@ -2,6 +2,7 @@
 ;**************************************
 ;~ gui,+
 ^x::
+Gui, Destroy
 gui, font, S12  ;Change font size to 12
 Gui, Add, GroupBox, x0 w460 h150, Search ;add a groupbox 
 gui, Add, Checkbox, x20 y30 checked1 vahk, AutoHotkey.com ;first checkbox and move down / over a bit

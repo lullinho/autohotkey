@@ -1,25 +1,18 @@
-﻿#Include <default_settings>
+﻿#Include <Default_Settings>
 
 
 
 ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-^h::
-MouseGetPos, x,y
-MsgBox % X A_tab Y
-Return
+; POSIÇÃO DO MOUSE
 
-#IfWinActive, ahk_exe Acrobat.exe
-adobe:="SEÇÃO III - Tubulação"
 ^h::
-MouseClick, left, 28, 214
-Sleep, 200	
-If adobe
-	MouseClick, left
+MouseGetPos, posX,posY
+MsgBox % posX A_tab posY
+ClipBoard:=%  posX " , "A_tab posY
 Return
-#IfWinActive
-
 
 ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; adicionar bloco de código trello sublime
 #IfWinActive, ahk_exe sublime_text.exe
 SetKeyDelay, 1 ; 
 	::code.::`````` `n`n`````` {Up}
@@ -29,7 +22,7 @@ SetKeyDelay, 1 ;
 ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-^!i:: ;get IP address
+!i:: ;get IP address
 clipboard:="Public ip is: " GetIP("http://www.netikus.net/show_ip.html​") "`n`nPrivate IP is:" GetLocalIPByAdaptor("Ethernet")
 MsgBox 64, IP Address, % Clipboard
 Return
@@ -64,9 +57,25 @@ Run mmsys.cpl
 Return
 ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; PARA ABRIR O WINDOWSPY DO autohotkey
-^p::
+!w::
 Run Y:\Programs\AutoHotKey\WindowSpy.ahk
 Return
+
+!e::
+Run Y:\Programs\AutoHotKey\Lib\SimpleSpy\SimpleSpy.ahk
+Return
+
+; 
+!r::
+Run Y:\Programs\AutoHotKey\Lib\Automate_my_Task.ahk
+Return
+
+; SCRIPT DAS HOTSTRINGS DE SERVIÇOS JOGOS PS3. J = JOGOS
+!j::
+Run X:\Estudos\Github\autohotkey\Jogo-Servicos-Jogo\servicos-ps3-ps4.ahk
+Return
+
+; ;;;;;;;;;;;
 ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;*******adjust volume by scrolling while mouse is over taskbar*********************************
@@ -92,21 +101,25 @@ MouseIsOver(WinTitle) {
 
 
 ; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;~ gui,+
-^!x::
+;~ Gui,+ Pesquisar Google
+!s::
+Gui, Destroy
 gui, font, S12  ;Change font size to 12
-Gui, Add, GroupBox, x0 w460 h150, Search ;add a groupbox 
-gui, Add, Checkbox, x20 y30 checked1 vahk, AutoHotkey.com ;first checkbox and move down / over a bit
+Gui, Add, GroupBox, x0 w460 h150, Pesquisa: ;add a groupbox 
+; gui, Add, Checkbox, x20 y30 checked1 vahk, AutoHotkey.com ;first checkbox and move down / over a bit
+gui, Add, Checkbox, x20 y30 checked1 vstackBR, Pt.StackOverflow.com ;first checkbox and move down / over a bit
+;gui, Add, Checkbox, checked0 vstackBR, Pt.StackOverflow.com
 gui, Add, Checkbox, checked0 vstack, StackOverflow.com
 gui, Add, Checkbox, checked1 vstackAHK, StackOverflow.com/AutoHotkey
+gui, Add, Checkbox, checked0 vahk, AutoHotkey.com
 gui, Add, Checkbox, checked0 vMicro,Microsoft.com
-gui, Add, Checkbox, checked0 vTech,TechOntheNet.com
-gui, Add, Text, x10 y+20, Search for:
+Gui, Add, Checkbox, Checked0 Vtech,Techonthenet.Com
+gui, Add, Text, x10 y+20, Pesquisar por:
 gui, Add, Edit ,x+10 yp-5 w360  vSearchTerm 
-gui, Add, Button, w75 gSearch Default, &Search
-gui, Add, Button, w75 x+25 gCancel Cancel, &Cancel
+gui, Add, Button, w82 gSearch Default, &Pesquisar
+gui, Add, Button, w75 x+25 gCancel Cancel, &Cancelar
 gui, font, S10 cblue ;Font size to 10 and color to blue 
-gui, Add, Checkbox, x300 yp+8 checked1 vquotes,Wrap Search in Double quotes ;Add check box to wrap in double quotes
+gui, Add, Checkbox, x320 yp+8 checked1 vquotes, Adicionar aspas na Pesquisa. ; Wrap Search in Double quotes ;Add check box to wrap in double quotes
 gui, Show 
 GuiControl,Focus,SearchTerm
 return
@@ -116,8 +129,9 @@ Gui Submit ;Needed to pull inf0 from controls
 if quotes ;if selected, url enclude double quotes around search term
 	SearchTerm:="%22" SearchTerm "%22"
 
-If ahk
-	run "http://www.google.com/search?q=%SearchTerm%+site:autohotkey.com"
+
+If stackBR 
+	run "http://www.google.com/search?q=%SearchTerm%+site:pt.stackoverflow.com"
 If stack 
 	run "http://www.google.com/search?q=%SearchTerm%+site:stackoverflow.com"
 If stackAHK
@@ -126,6 +140,8 @@ If micro
 	run "http://www.google.com/search?q=%SearchTerm%+site:microsoft.com"
 If tech
 	run "http://www.google.com/search?q=%SearchTerm%+site:techonthenet.com"
+If ahk
+	run "http://www.google.com/search?q=%SearchTerm%+site:autohotkey.com"
 
 gui, hide
 reload
@@ -134,4 +150,14 @@ return
 Cancel:
 gui, hide
 return
-Escape::ExitApp
+^!Escape::ExitApp
+
+
+;*********************paste plain text from ClipBoard**********************************.
+!p:: ;Control G =Paste Text version of Clipboard
+Clipboard_Backup:=ClipboardAll ;Store full version of clipboard
+ClipBoard := ClipBoard ; Convert clipboard to plain text
+SendEvent, ^v ;Send paste
+sleep, 100 ;Always have a sleep after pasting and before restoring clipboard
+Clipboard:=Clipboard_Backup
+Return

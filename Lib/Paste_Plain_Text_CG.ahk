@@ -8,4 +8,3 @@ sleep, 100 ;Always have a sleep after pasting and before restoring clipboard
 Clipboard:=Clipboard_Backup
 Return
 
-usage
