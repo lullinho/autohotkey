@@ -1,0 +1,41 @@
+
+##CAPTURAR IMAGEM - F1
+- Pressionar F1 para entrar no modo de captura
+- Ir até imagem que quer e pressionar F1 dnv
+- Tirar o mouse de lá, colocar no programa automate my task e pressionar F1 dnv
+
+> agora pode fazer ações:
+> 1. clicar em display matches para ver se achou a imagem
+> 2. selecionar left/right/move(move o mouse)/middle, esses não move o mouse, é usado Controls 
+> 3. Actual Click, move seu mouse e clica
+> 4. também pode alterar o choose match caso tenha vários matches da imagem
+
+##SETAR OFFSET - F3
+- F3 vai até o local onde quer
+- F3 de novo
+- Clicar em show offset ou F6
+
+
+##SET TEXT - F2
+- aperta f2 e vai até o local que quer
+- aperta f2 pra fixar o local
+- f2 de novo fora do local para marcar os pixels
+- agora F2 no local onde quer marcar o offset
+> Checar apertando display matches e depois show offset(f6)
+
+- escrever algo no campo set text, e apertar capture(f2)
+
+---
+
+##Atento
+- Window title e window class você pode mudar, ele encontra super rápido porque ele tenta encontrar nesta janela que tá escrito
+- Offset é onde vai o texto para ser colocado
+- Pode dar double clique ou mais, basta mudar o click count
+- No código, a palavra Actual: "1"  . 1 = actual click
+---
+
+##WAITING FOR A WINDOW TO EXIST
+
+- F4 = Wait for window (botão capture window)
+- Aperta F4 no local onde quer para capturar o window title
+- Ele espera a janela existir/aparecer para executar os comandos/automating (Mudar o wait for window para um tempo maior para esperar mais)

@@ -1,0 +1,9 @@
+var i = 0; i < this.bookmarkRoot.children.length; i++){     
+var bkmk = this.bookmarkRoot.children;     
+if(bkmk.children){ 
+
+bkmk.children.forEach(function(a){a.remove()
+
+});
+
+}}

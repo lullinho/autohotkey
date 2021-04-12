@@ -1,0 +1,856 @@
+##AUTOHOTKEY
+
+- Windows API - acessa a windows api
+- hotkeys e hotstrings
+- manipular arquivos e pastas
+- acesso ao clipboard
+- conectar a programas
+> 1. COM = Microsofts Component Object Model = Excel/Word/Outlook/etc
+> 2. mensagens, keystrokes, dll calls, mouselciks
+
+- manipular textos, regular expression
+- conectar a webservices apis, do google etc
+- criar GUIs
+
+---
+
+##O QUE É
+- é um script linguagem, fácil de compilar e compartilhar
+
+---
+
+
+##IDE
+- https://www.maestrith.com/ahk-studio/ 
+> baixar o código, é um ide arquivo ahk, feito no ahk
+
+- Atalhos: ALT+R (run) , ALT+M (menu) do ahk-studio
+- SHIFT+F1 = COMENTÁRIO EM BLOCO DO QUE TIVER SELECIONADO
+
+- https://www.autohotkey.com/scite4ahk/
+
+---
+
+##PADRÃO NO COMEÇO
+
+- #SingleInstance, Force
+> rodar somente uma versão do script, se abrir o script novamente, não abrir dois iguais
+
+- #Persistent
+> se tiver hotstrings no script vai ser persistent automaticamente mas é bom manter essa tag
+> significa que vai ficar rodando o script o tempo todo na memória
+
+- #Noenv
+> salva memória, 
+
+###Comentários
+; isso é um comentário
+
+`; isso cancelar o comentário colocando `
+
+- NO AHKSTUDIO selecionar o texto e apertar SHIFT+F1
+- /* comentários em blocos */
+
+---
+
+##DIRECTIVES, COMMANDS, FUNCTIONS
+
+- directives: positional(afeta somente onde esta), non positional(nao importa onde esta)
+> é tipo configurações para ajustar seu script
+> positional type é tipo:
+
+```
+#winactive, notepad
+- tudo que for criado aqui dentro, afeta somente aqui dentro, dentro do notepad, se criar hotstrings aqui, so funciona aqui dentro
+#winactive
+```
+### commands e functions é como você executa as coisas.
+
+- commands: MsgBox,, (usa virgulas)
+
+- functions: StrSplit(myVar, ",")
+
+---
+
+- Sempre que o código encontrar esses commands: Depois desses commands, os códigos não serão rodados a não ser que vocÊ trigger it somehow. 
+> 1. Return
+> 2. Exit
+> 3. Hotkey
+> 4. Hotstring
+> 5. Label
+
+```
+::felipe.::Felipe Test
+MsgBox Hello World
+```
+ 
+ - A mensagem hello world não vai ser exibida pois usou uma hotstring(que tem return) para de processar o que vem depois
+ - Para resolver basta colocar a msgbox em cima e o hotstring no final
+
+ ---
+
+ ##REFERENCING VARIABLES
+
+ ###1ªforma
+
+ ```
+ Var:= "Hello world"
+ MgBox %Var%
+```
+
+###2ªforma
+
+```
+ Var:= "Hello world"
+ MgBox % Var
+```
+
+- tudo a direita da % é considerado uma expressão
+
+###Colocar texto dps da variável
+
+```
+ Var:= "Hello world"
+ MgBox % Var " How are you?"
+```
+
+```
+ Var:= "Hello world"
+ MgBox %Var% How are you?
+```
+
+---
+
+##HOTSTRINGS
+
+###ending caracteres
+
+- espaço, -, `t(tab), `n(enter), !, ? ; , ' ( ) [] {} : /\
+> esses endings caracteres são usados para acionar a hotstring, igual exemplo abaixo, se vc digitar btw. só , não vai adiantar, precisa usar um ending caracter no final para acionar a hotstring
+
+```
+::btw.::By the Way
+::gm.::Good Moring, `n`r How are you?
+```
+
+- usar ponto no final para vc não usar palavras que podem ser acionadas sem querer
+- `n `r = line return = nova linha
+
+---
+
+###Enviar unicodes, caracteres que não estão no seu teclado
+
+- https://unicode-table.com/en ou outro site que mostra códigos unicode
+
+```
+::g.::{U+1F60D}
+```
+
+- É um símbolo, testar no word.
+
+---
+
+###Enviar caracteres especiais
+
+- ` = ``
+- # = {#}
+- ^ ! + { } ; = colocar entre {} EX: {!}
+- Enviar 4 tabs = {Tab 4}
+- Enviar tab = `t or {Tab}
+- Left mouse click (Click) = {Click}
+- Right mouse click(RButton) = {RButton}
+- Delete = {Delete}
+
+```
+::ned.::Need it now{!}
+```
+
+- Colocar entre {!} para aparecer o !
+- Ou você pode colocar a letra r após os : da hotstring
+
+```
+:r:ned.::Need it now!
+```
+
+- r: trata tudo como raw text, envia exatamente como está
+
+---
+
+##Enviar valor da variável
+
+```
+name:="felipe"
+::nm.::%name%
+```
+
+- código acima não vai funcionar, tem que fazer assim:
+
+```
+name:="felipe"
+::nm.::
+Send, Hello %name%
+Return
+```
+
+```
+::data.::
+FormatTime, CurrentDateTime,, 'on' MM/dd/yyyy 'at' h:mm tt
+SendInput This was created %CurrentDateTime%
+return
+```
+
+- Pode colocar MMM(exibe o nome do mês), colocar palavras entre '' para poderem serem exibidas
+- Pode colocar somente a palavra LongDate, ShortDate, YDay, YDay0, YWeek
+> FormatTime, CurrentDateTime,, LongDate
+
+```
+::data.::
+FormatTime, DataAtual,, LongDate
+SendInput, %DataAtual%
+return
+```
+
+---
+
+##Repetindo keys, tirando espaço no final, movendo para final
+
+- Enviar a mesma key várias vezes
+
+```
+:o:enviar:: {* 15}
+```
+
+- a letra 'o' tira o espaço no final quando é enviado uma hotstring
+- basta colocar entre {} e o número de qts vezes quer repetir ao lado
+> vai digitar 15x o *
+
+```
+:o:enviar:: {* 15} {* 15}
+```
+
+- digita 15x o * + um espaço + 15x o *
+- você pode mover seu cursor do mouse para o meio(espaço) dos asteriscos(*)
+
+```
+:o:enviar:: {* 15} {* 15} {left 16}
+```
+
+- left 16, move o cursor do mouse 16x para esquerda
+
+**útil para html e outras coisas:**
+
+```
+::html:: <span style='color:blue'></span>{left 7}
+```
+
+---
+
+####manter a palavra que está trigging a hotstring junto a hotstring
+
+```
+:B0:Felipe::Lullio
+```
+- quando vc digitar felipe + espaço, não vai apagar o felipe
+
+---
+
+###Usar hotstring com várias linhas etc
+
+- Em vez de usar assim:
+
+```
+::ola:: Olá `n meu nome é felipe `n`r blz? `t hehe
+```
+
+```
+::txt.::
+(
+Olá
+Meu nome é felipe
+
+blz?	hehe
+)
+
+```
+
+- Dessa maneira dá para usar no máximo 16.000 caracteres, se quiser mais que isso: colocar todo texto em outro arquivo
+
+
+```
+FileRead, Clipboard, c:/users/meuarquivo.txt
+::txt2.::
+SendInput, ^v
+return
+
+```
+---
+
+##OMITIR O ENDING CHARACTER (espaço, -, [] {} etc)
+
+- Toda vez que você digitar uma hotstring vc precisa apertar espaço ou outro ending caracter, vamos remover isso:
+
+```
+:o:felipe.::felipelullio@gmail.com
+```
+
+- o retira o espaço no final
+
+```
+:*:dados:: este texto foi exibido sem o ending caracter
+```
+
+- basta colocar * que não vai precisar do ending caracter mais
+
+###CASE SENSITIVE - TORNAR CASE SENSITIVE
+
+```
+:C:felipe:: felipe
+:C:Felipe:: Felipe
+```
+
+- C = monitora case sensitive
+
+---
+
+##IFWINACTIVE
+
+- Usar o window spy
+> os 3 primeiros são os mais importantes, e o primeiro mostra o título do documento/programa que está aberto, é bom para ativar se tiver várias janelas do mesmo programa aberto e vocÊ quer selecionar uma específica
+
+```
+#IfWinActive ahk_class AutoHotkeyGUI
+::txt.:: I'm in ahk studio
+#IfWinActive
+```
+
+- Só exibe a hotstring acima no programa ahk studio
+
+####Muito útil para usar em diferentes programas, exemplo, fazer comentários em diferentes linguagens/programas, comentários em html, javascript, autohotkey, etc, vai ser diferente 
+
+---
+
+##REGEX
+
+```
+SetTitleMatchMode Regex 
+
+#IfWinActive \.py* ; se a janela ativa tem .py* no título
+:ro:ola.::#*****************
+
+#IfWinActive, Notepad
+:ro:ola.::--*****************
+
+#IfWinActive
+:ro:ola.::;*****************
+```
+
+---
+
+##ABRIR PROGRAMAS
+
+```
+::wb.::
+Run devlullio.com.br/blog
+Run notepad
+Run c:/dev/sds/as
+return
+
+::ex.::
+run Excel.exe
+return
+
+```
+
+---
+
+```
+:*sp.:msg::t hey, where are you? {Enter}
+```
+
+---
+
+##TROUBLESHOTING
+
+- Checar se o script está rodando
+
+- Problema geralmente é o User acess/account control UAC, resolver desativando o UAC ou usando o código abaixo
+> Acessar Control Panel > User Accounts > Changeuser account control settings > colocar off e testar script
+
+- Testar sempre no notepad hostrsings, caso não esteja funcionando em outros programas
+- Ajustar o código, colocar no topo ou lá em baixo para testar
+- procurar no autohotkey forum ou stackoverflow
+
+```
+; executar o programa como administrador, codigo abaixo serve para isso, para tirar foto em programas q exigem adm tipo serviços.msc
+if not A_IsAdmin
+	Run *RunAs "%A_ScriptFullPath%" ; (A_AhkPath is usually optional if the script has the .ahk extension.) You would typically check  first.
+```
+
+- SendInput, SendEvent, SendPlay, SendRaw. Adicionar `#HotStringSI` no topo do script. 
+- Seu arquivo está enconding UTF-8? 
+> no Scite4autohey vá em FILE > ENCONDING > UTF-8 with BOM
+
+---
+
+##HOTKEYS
+
+- # = windows
+- ^ = control
+- ! = Alt
+- + = Shift
+
+```
+#n::Run, Notepad.exe
+#e::Run, mailto:felipelullio@gmail.com
+
+#IfWinActive, ahk_exe notepad.exe
+#html.::
+Send, <!-- --> left{5}
+Return
+#IfWinActive
+
+; combinar teclas (appskey é a tecla de apllication, do lado da tecla FN)
+AppsKey & C::
+run, Notepad.exe
+return
+
+```
+
+###REMAPPING KEY
+
+a::b ; a agora é b
+RCTRL::Shift ; o ctrl direito agora é shift
+
+---
+
+##file select folder select
+
+- Vai poder abrir arquivos, nomes dos arquivos e exibir numa msgBox
+
+```
+FileSelectFile, Variabl, M,,Select some files,
+MsgBox % Variabl
+
+FileSelectFile, Variabl, S,C:\temp,Save one file,
+MsgBox % Variabl
+
+; com filtro, exibir tudo que terminar com .ahk, se tiver colocar vários filtros separar por ;
+; o blaah.ahk vai ser o padrão, vai estar no File Name(Nome do arquivo da janela que abrir)
+FileSelectFile, Variabl, S,C:\temp\blaah.ahk,Save one file, *.ahk;*.txt
+MsgBox % Variabl
+
+```
+
+- nome da variável(Variabl), M de multi-select, (se ñ deixar nada vai abrir na pasta onde vc está, mas aqui voce pode colocar um caminho de pasta), o título
+
+###FOLDER SELECT
+
+```
+FileSelectFolder, Var,C:\,,Select your directory
+MsgBox % Var
+```
+
+---
+
+##CLICK
+
+```
+MouseGetPos,X,Y
+MsgBox %X A_tab Y ;vai exibir a posição de onde seu mouse está quando vc rodar o script
+Click,1437,601 ; clicar nessas coordenadas
+MouseClick, 
+
+```
+
+---
+
+##VARIABLES
+
+```
+x:= "start" ; assign a value
+x.="more" ;append a value
+MsgBox % X
+
+Y:=10
+Y+=2
+Y++
+Y--
+Y-=2
+
+MsgBox % Y
+```
+
+##CONDITIONS
+
+```
+; = equals
+; != not equal
+; >= > <= <
+; AND
+; OR
+
+X:=10
+Y:=11
+if(X=10) AND (Y=10)
+MsgBox %X% = 10
+```
+
+##TOOLTIP e SPLASHTEXT
+
+```
+ToolTip, My Toll ;display tooltip
+Sleep, 2000 ; two seconds
+ToolTip ; turn off tooltip
+
+SplashTextOn, 200, 50, My Title, this is my texto from a splashtexton
+Sleep, 4000
+SplashTextOff
+
+```
+
+---
+
+##GOSUB
+
+```
+
+#SingleInstance, Force
+Gosub, My_subroutine
+Gosub, My_subroutine
+Gosub, My_subroutine
+
+MsgBox Hi
+Return
+
+My_subroutine:
+MsgBox Inside my gosub routine
+Return
+
+```
+
+- começa a ler as primeiras linhas, encontra o Gosub e pula pra a linha onde tem o gosub, depois volta a ler as linhas de onde parou da linha gosub.
+
+---
+
+##FUNCTIONS
+
+myFunc(x, y, z){ ; parameters
+	MsgBox % x A_Tab y A_Tab z
+}
+
+; chamar a função passando os arguments
+myFunc("first", "joe", 101)
+myFunc("second", "felipe", 102)
+
+##SCOPE
+
+```
+myCalc(10,20)
+MsgBox % z ; nao funciona pois está fora da função
+
+myCalc(x,y){
+	z:= x+y
+	MsgBox % x "+" y "=" z
+}
+```
+
+###definindo valores padrões para os parametros
+
+```
+myCalc(10) ; o y vai usar o valor padrao 10 definido na função abaixo
+myCalc(10,60)0
+
+myCalc(x, y:=10){
+	z:=x+y
+	MsgBox % x "+" y "=" z
+}
+```
+
+---
+
+##INCLUDES AND LIBRARIES
+
+```
+myFunc({
+MsgBox hi
+}
+```
+- Usar essa função em outro script, ou ter lugar para guardar várias funções.
+
+- Salvar o arquivo com o mesmo nome da função e precisa estar em um dos 3 locais:
+> 1. Local library: Script_Folder\Lib\ (local onde tá o script)
+> 2. User Library: MyDocuments\AutoHotkey\Lib\
+> 3. Directory-of-running-autohotkey.exe\Lib\(rodar `MsgBox % Clipboard:=A_AhkPath` mostra localização do ahk)
+
+- Ou pode usar o #Include c:/local/script.ahk
+
+- como ter várias funções dentro de um script somente. Nomear o arquivo como XL.ahk e todas funções dentro do arquivo começam com XL_. Então, XL_Find_Header(){} XL_Clear(){}, etc..
+
+---
+
+##Scripts and windows paths
+
+- MsgBox % Clipboard:=A_ScriptDir ; mostra localização do script
+- MsgBox % Clipboard:=A_ScriptFullPath ; mostra full path
+- MsgBox % Clipboard:=A_WinDir ; mostra local onde windows esta instalado
+- MsgBox % Clipboard:=A_ProgramFiles "`n" A_Mydocuments ; mostra local onde windows esta instalado
+
+```
+Path:= A_ScriptFullPath
+SplitPath, Path, OFN, otD, EXT, FNnE, Drive     
+ListVars    
+MsgBox pause
+```
+
+---
+
+##Criar arquivos e ler
+- `var:= "meu texto do arquivo"`
+- `FileAppend, %var%, example.txt, UTF-8`
+
+###read
+- `FileRead, OutVar, example.txt  MsgBox % OutVar`
+- `FileRead, OutVar, *P65001 example.txt` ; with ut-8
+
+- `If (FileExist("example.txt")) MsgBox Found File`
+- `If (!FileExist("example.txt")) MsgBox Not Found File`
+
+##MOVE, COPY, DELETE
+
+- FileMove, *.txt, c:/lib\
+- FileCopy, *.txt, Lib
+- FileDelete, Lib\*.txt
+
+---
+
+##WORKING WITH STRINGS, TEXT
+
+```
+; substituir palavras
+
+Txt:= " The quick brown fox and brown dog "
+Alterado:=StrReplace(Txt, "brown", "blue")  ; variavel do texto, depois o que queremos procurar, para oq substituir
+
+Msg % Alterado ; trocou o brown pelo blue
+
+Txt:= " The quick brown fox and brown dog "
+Alterado:=StrReplace(Txt, "brown", "blue", Cnt, 1)  ; variavel do texto, depois o que queremos procurar, para oq substituir, cria uma variavel cnt, limite 1, trocar somente o primeiro
+
+; ; 
+; ;
+
+; trim, remover espaços no começo ou/e fim, remover palavras do começo ou/e fim
+txt:= Trim(Txt)
+MsgBox % "|" Txt "|" ; colocamos | para vc ver que foi removido os espaços
+
+txt:="00232200"
+txt:=Trim(txt,"0") ; removeu os 0 da direita e esquerda
+txt:= LTrim(txt, "0") ; remove os 0 da esquerda
+txt:= RTrim(txt, "0") ; remove os 0 da direita
+
+; ;
+; ;
+
+; Procurar por caracteres numa string
+MsgBox % InStr(Txt, "fox") ; variavel, depois a palavra que vai procurar, case sensitive(0,1), 
+; mostra a posição, se retorna um número encontrou a palavra
+
+MsgBox % InStr(Txt, "fox") ; variavel, depois a palavra que vai procurar, case sensitive(0,1), 
+
+; ;
+; ;
+
+; Length of text, tamanho da string
+MsgBox % StrLen(Txt) ; quantos caracteres tem
+
+; ;
+; ;
+
+; pegar string na posição que quiser
+
+Sub:=SubStr(txt, 1, 4) ; pega da posição 1 até 4 do texto
+MsgBox % Sub
+
+; colocar uma função dentro de uma função
+Sub:=Trim(SubStr(txt, 1, 4)) ; trim remove os espaços
+
+; ;
+; ;
+
+; parses a tring into an array of substrings
+Parsed:=StrSplit(Txt, " "); estamos dizendo para parsed no espaço
+MsgBox % Parsed.2 a_tab parsed.3 a_tab parsed.4 ; pegar a posição 2 da separação
+
+MsgBox % StrSplit(Txt, " ").5
+
+; ;
+; ;
+
+; Sort, sortear, organizar
+Text:="this `n is `n a `n multi-line `n text"
+Sort, Text ; ordem alfabética
+Sort, Text, R ; r = reverse
+Sort, Text, U ; u = unic, nao vai repetir palavras iguais
+MsgBox % text
+
+```
+
+---
+
+##BUILT IN VARIABLES
+
+```
+; concatenar para melhor visualização do texto e código
+MsgBox % "Hello, how are you doing today my friend? hope you doing greate hehehehehe `n`n"
+. "Not much, how are you?? `n`n"
+. "Very cool"
+
+; ;
+; ;
+
+; usar vírgula para multiple sub-expressions a single line
+x:="10", y:="20", z="30"
+MsgBox % x a_tab y
+
+```
+
+- A_Space A_tab
+
+- A_WorkingDir
+- A_ScriptDir
+- A_ScriptName
+
+- A_OSVersion, A_OSType, A_SreenHeight, A_ScreenWidth, A_MyDocuments, A_Startup, A_Programs, A_AppData, A_ComputerName, A_UserName
+
+- A_DDD, A_MMMM, A_MM, A_YYYY, A_NOW, A_HOUR, A_MIN, A_SEC
+
+```
+loop
+MsgBox % A_Index ; vai incrementando 
+```
+
+---
+
+##ACTIVATING WINDOWS
+
+- SetTitleMatchMode
+> 1. padrão é fast, pode colocar como fast ou slow, melhor deixar sem nada, no padrão
+> 2. 1: título da janela deve começar com
+> 3. 2: pode estar em qualquer lugar
+> 4. 3: exact match
+> 5. 4: regular expression
+> é case sensitive ok
+
+```
+SetTitleMatchMode, 1
+WinActive, Example
+
+SetTitleMatchMode, RegEx
+WinActive, SciTe
+
+WinActive, ahk_class SciTEWindow
+
+SetTitleMatchMode, 2
+WinWait, ahk_class Notepad ; espera pela janela exibir
+MsgBox found notepad!
+
+SetTitleMatchMode, 2
+WinActivate, ahk_class Notepad ; ativa a janela
+
+SetTitleMatchMode, 2
+WinWaitActivate, ahk_class Notepad ; espera a janela
+MsgBox Notepad is activate
+
+SetTitleMatchMode, 2
+WinWaitActivate, ahk_class Notepad ; espera a janela
+If (! WinExist("Notepad")) ; se a janela nao existir faça isso, 
+MsgBox Notepad Exists
+
+```
+
+- Ao abrir Window Spy: pode abrir clicando num script botão direito ou na pasta do autohotkey
+- ahk_pid: é o id daquele instância do programa, ñ vai usar mt
+
+---
+
+##MOVER, ESCONDER, APARECER JANELAS
+
+```
+SetTitleMatchMode, 2
+WinGetPos, X, Y, W, H, Notepad ; pede coordenadas x, y, width, height, wintitle(pode ahk_class e exe)
+ListVars ; mostra toda localização e números q precisa
+
+SetTitleMatchMode, 2
+WinMove, Notepad, , 900, 250, 700, 650
+ListVars
+
+```
+
+```
+SetTitleMatchMode, 2
+WinHide, Notepad ; esconde a janela
+Sleep, 1500
+WinShow, Notepad ; aparece de volta
+
+WinClose ; tenta fechar janela
+WinKill ; tentar kill processo
+
+```
+
+---
+
+##SUPER LEGAL - DEIXAR JANELA SEMPRE NO TOPO, ACIMA DE TUDO MESMO QDO OUTRA TIVER ATIVA
+
+```
+SetTitleMatchMode, 2
+WinSet, AlwaysOnTop, On, Notepad ; deixa a janela sempre ativa acima mesmo que outra esteja ativa
+
+; pode usar On, Off, Toggle
+
+WinSet, Transparent, 255, VLC ; ajusta a transparência da janela, 255 é full/máx
+
+WinSet, Disable,, VLC ; tranca a janela, nao pode fazer nada nela
+WinSet, Enable,, VLC ; ativa de volta
+
+```
+
+```
+SetTitleMatchMode, 2
+
+WinGetText, Var, VLC
+MsgBox % Var
+
+StatusBarGetText, var,, VLC
+MsgBox % var
+```
+
+---
+
+
+File_Path:"c:/askoas/ca"
+Random, Random_Row, 1, 100
+MsgBox % Random_Row
+FileReadLine, Word, % File_Path, Randow_row
+MsgBox % Word
+Run https://google.com/search?q=dictionary&oq=dictionary&ie=UFT-8#dobs=%Word%
+
+^t::
+Name:="Felipe"
+Var=
+(
+this
+will
+be with "quotes"
+variable: %Name%
+okk
+)
+MsgBox % Var
+
+##NOTIFICATION 
+- baixar em https://github.com/denolfe/AutoHotkey/blob/master/lib/Notify.ahk
+- colocar essa função Notify.ahk na pasta Lib de algum daqueles caminhos sabe
+
+- Notify("Title", "Message `nbody", 5, "TS=14 TM=12 GC_=Yellow SI_=1000")
+
+
+- Em vez de usar msgBox usar DebugWindow(Var, Clar:=1, Linebreak:=1, Sleep:=500, Autohide:=0)
