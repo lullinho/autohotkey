@@ -119,7 +119,6 @@ Gui linha:Show
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-;;;;;;;;;;;;;;;;;;;;;;;;ACESSAR INFORMAÇÕES DA VARIÁVEL
 ;;;;;;;;;;;;;;;;;;;;;;;;SALVAR INFORMAÇÃO DO USUÁRIO - VARIABLES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 1. definir variavel nas opcoes do control basta colocar v na frente
 ; 2. para acessar variavel nao precisa colocar v na frente
@@ -904,12 +903,3 @@ Gui Add, Button, xs gCalculate, Okay
 ; ESSE COMANDO PODE SER USADO PARA MODIFICAR TODOS CONTROLS EM UMA GUI
 
 GuiControl, Subcommand, ControlID[, Value]
-
-Gui Add, Progress, w200 vMyProgress, 10
-Gui Show
-
-Loop 50
-{
-	GuiControl,, MyProgress, +1
-}
-

@@ -119,7 +119,6 @@ Gui linha:Show
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-;;;;;;;;;;;;;;;;;;;;;;;;ACESSAR INFORMAÇÕES DA VARIÁVEL
 ;;;;;;;;;;;;;;;;;;;;;;;;SALVAR INFORMAÇÃO DO USUÁRIO - VARIABLES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 1. definir variavel nas opcoes do control basta colocar v na frente
 ; 2. para acessar variavel nao precisa colocar v na frente
@@ -773,14 +772,7 @@ return
 
 ; LV_GetNext() - retorna o numero do proximo selecionado ou checked row, se nao ecnontrar nada retorna 0, recebe dois parametros
 ; 1º parametro é o numero de onde vc quer começar a procurar from
-; 2] parametro é o tipo de rows que esta procurando - "checked" ou "c" | "focused" ou "f"
 
-; LV_GetText() - pegar texto de um campo especifico , 3 parametros
-; 1º parametro - nome da variavel que quer inserir o texto que encontrar
-; 2º parametro - numero da row que quer começar a procurar informações
-; 3º parametro - qual coluna vc quer retrieve/recuperar, se não colocar nada a primeira coluna será recuperada por padrão
-; por exemplo vc pode pegar texto que está na segunda linha da terceria coluna
-LV_GetText(var, 2, 3)
 Gui Add, ListView, w300 h300, Name|Size|Date Modified
 Gui Add, Button, w75 gRunFunction, rodar ; botão da função RunFunction
 
@@ -791,125 +783,3 @@ Return
 
 RunFunction:
 MsgBox % LV_GetCount("column")
-MsgBox % LV_GetNext(0, "checked")
-MsgBox % var
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;; ADICIONAR ÍCONES
-
-; criar lista de ícones
-Gui Add, ListView, w300 h300 checked grid -readonly icon, Name|Size|Date Modified
-
-; cria uma image list e retorna seus id que podem ser salvo numa variável 3 parametros o IL_Create()
-; 1º parametro - initial count of the icons on the list, se vc acha q só precisa de 10 icones na lista, coloca 10
-; 2º parametro - como a lista vai crescer e adicionar mais icones do que vc especificou no primeiro, geralmente coloca sempre 0 nesse parametro
-; 3º parametro - true or false para se vai ser small icons ou big iconss
-listID := IL_Create(10, 0,  true) ; big icons
-
-loop 50
-	; adicionar icones na lista
-	; 1º para: id do item da image list que quer adicionar icone
-	; 2º para: filename que vai extrair os itens
-	IL_add(listID,"Shell32.dll" , a_index)
-
-	; Aplicar os icones na ListView, só precisa o id da lista que quer usar
-LV_SetImageList(listID)
-
-
-; agora vc pode espeficiar icones quando for adicionar linhas com conteúdos
-Loop 50
-	lista := LV_Add("icon" a_index, "Item" a_index, "500MB", a_now + a_index)
-
-Gui Show
-return
-
-
-
-
-;;;;;;;;;; TRABALHANDO COM MULTIPLOS GUIS OR MULTIPLE ControlS
-; Se você tiver duas guis uma do lado da outra, as funções aprendidas anteriormente só vão ser aplicadas na ultima Gui
-; Para resolver isso vc precisa colocar variavel na listviewcontrol
-Gui Add, ListView, w300 h300 grid - readonly vfirstLV, Name|Size|Date Modified
-Gui Add, ListView, x+10 w300 h300 grid -readonly vsecondLV, Name|Size|Date Modified
-
-; funcao para a primeira listview
-Gui ListView, firstLV
-
-loop 50
-	lst:= LV_Add("", "iTEM", a_index, "500MB", a_now + a_index)
-
-; funcao para a segunda listview
-Gui ListView, secondLV
-
-loop 50
-	lst:= LV_Add("", "Item" a_index, "500MB", a_now + a_index)
-
-Gui Show
-return
-
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; VIMOS BASTANTE CONTROLS PARA PEGAR INFORMAÇÃO DO USUÁRIO
-
-
-;;;;;; CONTROLS PARA DISPLAY INFORMATION TO user
-
-; PROGRESS CONTROL
-
-; OPTINOS: 
-; cRed = muda a cor da bar
-; BackgroundBlue = muda a cor do background do control
-; cFF0000 ou Background 0000FF = pode usar o hexadecimal number
-; range1-200 = a bar vai de 1 até 200
-; vertical = para mostrar do topo ao fundo
-
-Gui Add, Progress,  w200 cRed BackgroundGreen vMyProgress, 10 ; 10%
-Gui Show
-
-; PARA MODIFICAR A BAR,vamos chamar GuiControl várias vezes E CADA VEZ ATUALIZAR O CONTROL BY 10 POINTS
-Loop, 90
-{
-	GuiControl,, MyProgress, +10
-	Sleep, 100
-
-}
-Return
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; STATUS BAR, TRACK CHANGING CONDITIONS, Function
-Gui Add, StatusBar,, Default Text ; não tem options
-; SB_SetText() 1º parametro: texto que queremos, 2º parametro: qual parte queremos modificar
-SB_SetText("Frist", 1) 
-SB_SetText("Second", 2)
-SB_SetText("Third", 3)
-; podemos dividir em diferentes seções
-SB_SetParts(50, 100) ; primeira parte do statusbar tem 50pixels, segunda 100 pixels
-
-Gui Show, w400 h200
-return
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GUI CONTROL
-; depois de criar a GUI podemos interagir com os controls usando geralmente o gLabel
-gUI aDD, Edit, v1Semestre ys
-Gui Add, Edit, v2Semestre
-
-Gui Add, Button, xs gCalculate, Okay
-
-; MAS EM ALGUNS CASOS, PODEMOS USAR O GUICONTROL, COMO NO CONTROL PROGRESS
-; ESSE COMANDO PODE SER USADO PARA MODIFICAR TODOS CONTROLS EM UMA GUI
-
-GuiControl, Subcommand, ControlID[, Value]
-
-Gui Add, Progress, w200 vMyProgress, 10
-Gui Show
-
-Loop 50
-{
-	GuiControl,, MyProgress, +1
-}
-

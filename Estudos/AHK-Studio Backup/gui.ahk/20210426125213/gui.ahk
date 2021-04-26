@@ -119,7 +119,6 @@ Gui linha:Show
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-;;;;;;;;;;;;;;;;;;;;;;;;ACESSAR INFORMAÇÕES DA VARIÁVEL
 ;;;;;;;;;;;;;;;;;;;;;;;;SALVAR INFORMAÇÃO DO USUÁRIO - VARIABLES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; 1. definir variavel nas opcoes do control basta colocar v na frente
 ; 2. para acessar variavel nao precisa colocar v na frente
@@ -877,39 +876,5 @@ Loop, 90
 	Sleep, 100
 
 }
+
 Return
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; STATUS BAR, TRACK CHANGING CONDITIONS, Function
-Gui Add, StatusBar,, Default Text ; não tem options
-; SB_SetText() 1º parametro: texto que queremos, 2º parametro: qual parte queremos modificar
-SB_SetText("Frist", 1) 
-SB_SetText("Second", 2)
-SB_SetText("Third", 3)
-; podemos dividir em diferentes seções
-SB_SetParts(50, 100) ; primeira parte do statusbar tem 50pixels, segunda 100 pixels
-
-Gui Show, w400 h200
-return
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; GUI CONTROL
-; depois de criar a GUI podemos interagir com os controls usando geralmente o gLabel
-gUI aDD, Edit, v1Semestre ys
-Gui Add, Edit, v2Semestre
-
-Gui Add, Button, xs gCalculate, Okay
-
-; MAS EM ALGUNS CASOS, PODEMOS USAR O GUICONTROL, COMO NO CONTROL PROGRESS
-; ESSE COMANDO PODE SER USADO PARA MODIFICAR TODOS CONTROLS EM UMA GUI
-
-GuiControl, Subcommand, ControlID[, Value]
-
-Gui Add, Progress, w200 vMyProgress, 10
-Gui Show
-
-Loop 50
-{
-	GuiControl,, MyProgress, +1
-}
-
