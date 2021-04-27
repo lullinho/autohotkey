@@ -6,7 +6,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
 
-
+global qtdVolumes2Acima:=19
+global qtdProxDatabooks:=44
 
 /*
 global Arr:= ["Volume 8 - Parte 01 até 07", "Volume 8 - Parte 08 até 13", "Volume 8 - Parte 14"
@@ -27,22 +28,19 @@ global Arr:= ["Volume 8 - Parte 01 até 07", "Volume 8 - Parte 08 até 13", "Vol
 ,"Volume 8 - Parte 15 - Seção 11.10.22 REM", "Volume 8 - Parte 15 - Seção 11.10.23 TERCEIROS"]
 */
 
-global qtdVolumes8Acima:=6
-global qtdProxDatabooks:=44
-global Arr:=["Volume 8 - Parte 15 - Seção 11.10.23 TERCEIROS"
-,"Volume 8 - Parte 15 - Seção 11.10.24 PROCEDIMENTOS"
+global Arr:=["Volume 8 - Parte 15 - Seção 11.10.24 PROCEDIMENTOS"
 ,"Volume 8 - Parte 15 - Seção 11.10.25 FICHA DE EPI"
 ,"Volume 8 - Parte 15 - Seção 11.10.26 RELATÓRIO MESAL DE SMS DE OUT-NOV-DEZ"
 ,"Volume 8 - Parte 15 - Seção 11.10.27 MEIO AMBIENTE"
 ,"Volume 8 - Parte 15 - Seção 11.10.28 RELATÓRIO DE AVALIAÇÃO FINAL DO DESEMPENHO DE SMS"]
 
 
-funcCriarBookmarkVolume8Acima(){
+funcCriarBookmarkVolume2Acima(){
 	
 	#IfWinActive, ahk_class AcrobatSDIWindow
 	k := 8
 	I:= 1
-	Loop, % qtdVolumes8Acima
+	Loop, % qtdVolumes2Acima
 	{	
 		; abaixo cria um bookmark para abrir os bookmarks e depois exclui, envia pro final e pula dois arrow pra cima pra criar volume 8
 		Sleep, 500
@@ -226,7 +224,7 @@ funcProxDatabook(){
 			; myFunc("Volume") ; chama a função novamente para criar os bookmarks novamente
 		; myFunc("Volume 1 - Parte")
 		; funcCriarBookmarkVolume1()
-		funcCriarBookmarkVolume8Acima()
+		funcCriarBookmarkVolume2Acima()
 		Sleep, 900
 		Send, {End}
 		Send, {Up j}
@@ -241,7 +239,7 @@ Sleep, 700
 WinActivate, Adobe
 WinActivate, ahk_exe Acrobat.exe
 Sleep, 500
-funcCriarBookmarkVolume8Acima()
+funcCriarBookmarkVolume2Acima()
 Sleep, 300
 ; funcCriarBookmarkVolume1()
 funcProxDatabook()

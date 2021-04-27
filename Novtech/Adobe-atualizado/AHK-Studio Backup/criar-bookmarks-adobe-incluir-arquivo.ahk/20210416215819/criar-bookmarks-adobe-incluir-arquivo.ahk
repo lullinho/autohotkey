@@ -35,16 +35,17 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; ControlSend,,{TAB}, ahk_exe Acrobat.exe
 
 
+global Arr:= ["Volume 1 - SEÇÃO 1.1 - Parte 01 até 08","Volume 1 - SEÇÃO 1.1 - Parte 09 até 17","Volume 1 - SEÇÃO 1.1 - Parte 18 até 25","Volume 1 - SEÇÃO 1.1 - Parte 26 até 38", "Volume 1 - SEÇÃO 1.1 - Parte 39 até 48","Volume 1 - SEÇÃO 1.1 - Parte 49 até 57", "Volume 1 - SEÇÃO 1.1 e 1.2 - Parte 58 até 65", "Volume 1 - SEÇÃO 1.2, 1.3 e 1.4 - Parte 66 até 71","Volume 1 - SEÇÃO 1.4 , 1.5, 1.6 e 1.7 - Parte 72 até 77", "Volume 1 - SEÇÃO 1.7, 1.8, 1.9, 1.9.1, 1.9.2 e 1.9.3 - Parte 78 até 82","Volume 1 - SEÇÃO 1.10, 1.11, 1.12, 1.13 e 1.14 - Parte 83 até 91" ]
+i:=1
 
 /*
 	For keyIndex, Value in Arr
 		MsgBox % keyIndex a_tab Value
 */
-global Arr:= ["Volume 1 - SEÇÃO 1.1 - Parte 01 até 08","Volume 1 - SEÇÃO 1.1 - Parte 09 até 17","Volume 1 - SEÇÃO 1.1 - Parte 18 até 25","Volume 1 - SEÇÃO 1.1 - Parte 26 até 38", "Volume 1 - SEÇÃO 1.1 - Parte 39 até 48","Volume 1 - SEÇÃO 1.1 - Parte 49 até 57", "Volume 1 - SEÇÃO 1.1 e 1.2 - Parte 58 até 65", "Volume 1 - SEÇÃO 1.2, 1.3 e 1.4 - Parte 66 até 71","Volume 1 - SEÇÃO 1.4 , 1.5, 1.6 e 1.7 - Parte 72 até 77", "Volume 1 - SEÇÃO 1.7, 1.8, 1.9, 1.9.1, 1.9.2 e 1.9.3 - Parte 78 até 82","Volume 1 - SEÇÃO 1.10, 1.11, 1.12, 1.13 e 1.14 - Parte 83 até 91" ]
-i:=1
+
 global qtdVolumes1:=11
 global qtdVolumes2Acima:=9
-global qtdProxDatabooks:=5
+global qtdProxDatabooks:=17
 
 funcCriarBookmarkVolume1(){
 	#IfWinActive, ahk_class AcrobatSDIWindow
@@ -286,6 +287,8 @@ funcCriarBookmarkVolume2Acima(nomeVolume){
 } ; fim da funcao
 
 
+
+
 funcProxDatabook(){
 	
 	
@@ -333,17 +336,6 @@ SetTitleMatchMode, 2
 WinActivate, Adobe
 WinActivate,ahk_exe Acrobat.exe
 
-funcCriarBookmarkVolume1()
-Sleep, 300
-funcCriarBookmarkVolume2Acima("Volume")
-Sleep, 300
-; funcCriarBookmarkVolume1()
-funcProxDatabook()
-
-^escape:: ExitApp
-
-^!b::Pause,Toggle
-
 ; funcCriarBookmarkVolume("Volume 1 - Parte"%i%)
 
 /*
@@ -357,7 +349,12 @@ funcProxDatabook()
 */
 
 
-
+funcCriarBookmarkVolume1()
+Sleep, 300
+funcCriarBookmarkVolume2Acima("Volume")
+Sleep, 300
+; funcCriarBookmarkVolume1()
+funcProxDatabook()
 
 
 
@@ -479,5 +476,7 @@ funcProxDatabook()
 		*/
 		
 ; SAIR DO CÃ“DIGO RAPIDAMENTE, CASO DE ERRO ETC, PARA NÃƒO FICAR RODANDO CÃ“DIGO
-
+		^escape:: ExitApp
+		
+		^!b::Pause,Toggle
 

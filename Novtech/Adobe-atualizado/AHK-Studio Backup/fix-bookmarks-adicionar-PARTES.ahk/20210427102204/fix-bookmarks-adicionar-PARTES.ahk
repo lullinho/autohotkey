@@ -7,12 +7,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 
-; global qtdPartes:= "3"
-
-global qtdArquivos:= "3"
-global qtdBookmarks:= [3, 9, 8, 13, 10, 9, 8, 6, 6, 5, 9]
+global qtdPartes:= "3"
 global i:="1"
 global j:="1"
+global qtdArquivos:= "1"
+global qtdBookmarks:= [3, 9, 8, 13, 10, 9, 8, 6, 6, 5, 9]
 
 funcFakeBookmarkFim(){
 	Sleep, 500
@@ -30,8 +29,9 @@ funcFakeBookmarkFim(){
 
 funcFecharBookmarks(){
 ; fechar os booksmarks principais, eles que vão ser renomeados só
-	Loop, 150{
+	Loop, 20{
 		Send, {Left 2}
+		Sleep, 500
 		Send, {Up}
 	}
 }
@@ -49,7 +49,7 @@ funcRenomearBookmarks(){
 		Sleep, 900
 		
 		
-		Send, % " - Parte " Format("{:02}/", i) Format("{:02}", qtdBookmarks[j])
+		Send, % " - Parte " Format("{:02}/", i) Format("{:02}", qtdPartes)
 		Sleep, 900 
 		Send, {Enter} ; confirma o nome do bookmark
 		Sleep, 900
@@ -60,7 +60,6 @@ funcRenomearBookmarks(){
 		; MsgBox % "fim i = " i
 	}
 	j++
-	i:=1
 }
 
 

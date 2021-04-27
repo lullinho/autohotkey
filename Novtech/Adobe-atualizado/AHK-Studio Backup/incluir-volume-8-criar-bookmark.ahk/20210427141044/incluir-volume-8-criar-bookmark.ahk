@@ -6,7 +6,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 
 
-
+global qtdVolumes8Acima:=6
+global qtdProxDatabooks:=44
 
 /*
 global Arr:= ["Volume 8 - Parte 01 até 07", "Volume 8 - Parte 08 até 13", "Volume 8 - Parte 14"
@@ -27,8 +28,6 @@ global Arr:= ["Volume 8 - Parte 01 até 07", "Volume 8 - Parte 08 até 13", "Vol
 ,"Volume 8 - Parte 15 - Seção 11.10.22 REM", "Volume 8 - Parte 15 - Seção 11.10.23 TERCEIROS"]
 */
 
-global qtdVolumes8Acima:=6
-global qtdProxDatabooks:=44
 global Arr:=["Volume 8 - Parte 15 - Seção 11.10.23 TERCEIROS"
 ,"Volume 8 - Parte 15 - Seção 11.10.24 PROCEDIMENTOS"
 ,"Volume 8 - Parte 15 - Seção 11.10.25 FICHA DE EPI"

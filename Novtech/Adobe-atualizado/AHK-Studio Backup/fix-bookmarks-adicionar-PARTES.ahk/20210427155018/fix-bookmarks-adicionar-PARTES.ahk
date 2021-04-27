@@ -30,7 +30,7 @@ funcFakeBookmarkFim(){
 
 funcFecharBookmarks(){
 ; fechar os booksmarks principais, eles que vão ser renomeados só
-	Loop, 150{
+	Loop, 60{
 		Send, {Left 2}
 		Send, {Up}
 	}
