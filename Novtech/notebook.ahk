@@ -182,12 +182,11 @@ clipboard =
 	Av. Nossa Sra. da Encarnação, 925 - Loja 23 - Vila das Merces, São Paulo - SP, 04180-081
 	No shopping via 80, loja 23, Novtech
 	
-	Prato: Omelete fitness 
+	*Prato: Omelete fitness + suco de maracujá* 
 	
-	Obs: se puder colocar bastante legumes por favor rs e incluir os talheres de plástico também! 
+	Obs: se puder colocar bastante legumes por favor e incluir os talheres de plástico também! 
 	
 	Obrigado!`n
-	
 	
 )
 
@@ -197,6 +196,14 @@ SendInput Data: %OutputVar%  `n
 Send, {Enter}
 
 Return
+
+Loop{
+		if(1 > 5){
+			Send {F15}
+			return
+		}
+}
+
 
 
 
