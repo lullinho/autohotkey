@@ -76,7 +76,7 @@ Gui main:Show ; mostra janela novamente
 
 
 	; DropDownList - teste
-Gui Add, DropDownList, vSelectedOption, opttion1|option2|option 3 ; cria um dropdown list e adiciona as opções nela
+Gui Add, DropDownList, vSelectedOption, opttion1|option2 | option 3 ; cria um dropdown list e adiciona as opções nela
 Gui Add, button, w75 gSubmit, Okay
 Gui Show
 return
