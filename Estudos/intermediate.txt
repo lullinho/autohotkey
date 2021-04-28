@@ -1,0 +1,804 @@
+##INTEMEDIATE
+
+- SingleInstance
+- SetBatchLines, -1 (rodar o script mais rápido possível)
+- #NoEnv (evita checar variáveis vazias para ver se são environment variables), acelera um pouco.
+- SetWorkingDir %A_ScriptDir% ; starting directory consistente
+
+2)	Non-critical recommended settings  (Directives vs. Commands see Lecture 10 in Intro to AutoHotkey)
+a.	#KeyHistory 10 ;Sets the maximum number of keyboard and mouse events displayed 
+b.	#MaxThreads 5 ;Sets the maximum number of simultaneous threads
+c.	#MaxMem 4095 ; Sets the maximum capacity of each variable to the specified number of megabytes.
+d.	DetectHiddenWindows, On ;ensure AutoHotkey can find hidden windows
+e.	SendMode Input  ; Recommended for new scripts due to its superior speed and reliability
+f.	SetTitleMatchMode 2 ;Sets the matching behavior of the WinTitle parameter to match anywhere
+g.	SetTitleMatchMode fast ; This is the default behavior. Performance may be substantially better than Slow, but certain WinText elements for some types of windows may not be "seen" by the various window commands
+h.	SetKeyDelay, -1, -1, -1 ;Sets the delay that will occur after each keystroke sent by Send and ControlSend
+i.	SetMouseDelay, -1 ;Sets the delay that will occur after each mouse movement or click
+j.	SetWinDelay, 0 ;Sets the delay that will occur after each windowing command, such as WinActivate
+k.	SetControlDelay, 0 ;Sets the delay that will occur after each control-modifying command
+l.	SetDefaultMouseSpeed, 0 ;Sets the mouse speed that will be used if unspecified in Click, MouseMove/Click/Drag
+
+---
+
+##Importar configurações padrões para não digitar toda hora
+
+- Colocar o arquivo default_settings na pasta lib
+- Importar usando:
+> #Include <default_settings>
+> #Include b:\progrs\autohotkey\ib\\default-settings.ahk
+
+---
+
+##Send, sendevent, sendwaw
+
+- Send e sendEvent são iguais, sendevent pode controlar tempo
+- SendRaw - não vai ter problema com caracteres especiais
+
+##SendInput e SendPlay são melhores
+
+##SetTimer
+
+```
+Run Notepad
+Run Notepad
+Run Notepad
+
+SetTimer, KillNotepad, 1000 ; 1 segundo
+
+KillNotePad:
+WinClose, Untitled - Notepad
+MsgBox in setimer
+Return
+```
+
+---
+
+##INIWRITE AND INIREAD - configurações de programas etc
+
+```
+IniWrite, Lullio, arquivo.ini, Main, Felipe ; cria um arquivo arquivo.ini se ñ existe cria sozinho, com os valores(seção [Main], Key: Felipe=Lullio)
+
+; atualizar automaticamente sem precisar clicar na janela
+
+WinActivate, arquivo.ini
+Sleep, 60
+WinActivate, AHK Studio
+
+; ; ; ; ; ; ;; ; ; ; ; ; ; ; ; 
+
+IniWrite, Felipe=Four, arquivo.ini, Main ; outra forma mas essa forma exclui as outras keys se tiver, ruim
+IniWrite, texto aqui, arquivo.ini, Main ; forma de usar sem apagar os de cima, dessa forma consegue adicionar na mesma seção
+
+text=
+(
+this
+is
+multiple
+lines
+)
+IniWrite, %text%, arquivo.ini, Main, MultiLine
+
+MsgBox % text
+text:= StrReplace(Text, "`n", "|") ; trocar a quebra de linha por |
+IniWrite, %text%, arquivo.ini, Main, MultiLine
+MsgBox % text
+IniRead, var, arquivo.ini, Main, Multiline
+
+
+var:= StrReplace(Text, "|", "`n") ; trocar a quebra de linha por |
+IniRead, var, arquivo.ini, Main, Multiline
+
+
+```
+
+---
+
+##Windows Registry - banco de dados que armazena low-level settings do windows e aplicações
+
+**Foi criado para substituir o .ini files que falamos acima**
+
+- RegRead,RegRead, OutputVar, KeyName , [ValueName]
+- RegWrite,VaIueType, KeyName, [ValueName, Value]
+- RegDelete, KevName , [ValueName]
+- Registry KeyName This must start with:
+> 1. HKEY_LOCAL_MACHINE = HKLM
+> 2. HKEY_USERS = HKU
+> 3. HKEY_CURRENT_USER = HKCU
+> 4. HKEY_CLASSES_ROOT = HKCR
+> 5. HKEY_CURRENT_CONFIG = HKCC
+
+AutoHotkey can write the following value types
+•	REG_SZ -  A string value 
+•	REG_EXPAND_SZ - An "expandable" string value that can contain environment variables
+•	REG_MULTI_SZ -A multi-string value, which is an ordered list of non-empty strings
+•	REG_DWORD -A DWORD value, a 32-bit unsigned integer (numbers between 0 and 4,294,967,295)
+•	REG_BINARY - Binary data (any arbitrary data)
+
+
+
+```
+RegRead, Var, HKEY_CURRENT_USER,Software\WinRAR, Path
+MsgBox % Var
+
+RegRead, Var, HKLM, SYSTEM\ControlSet001\Services\BITS, RequiredPrivilages
+MsgBox % Var
+
+RegWrite, REG_SZ, HKCU, Software\1_autohotkey,mykey,Hello World
+RegDelete, HKCU, Software\1_autohotkey, mykey ;  exclui o valor mykey
+RegDelete, HKCU, Software\1_autohotkey
+
+; automatizar atualização 
+WinActivate, Editor do Registro
+Send, {F5} ; não vai funcionar sem rodar o script como adm
+Sleep, 60
+WinActivate, AHK Studio
+
+```
+
+##CONTROLS
+
+**child window que uma aplicação usa em conjunto com outra janela para abilitar interação**
+- janela dentro de outra janela, como interagimos com o programa
+- Pode estar no background, não precisa estar ativo
+- não precisa estar visísvel a janela, não interrompe ações humanas
+- melhor que keystrokes, SUPER RÁPIDO
+- Mais avançado do que sending clicks, 
+
+5.	What is a window control – AutoHotkey forum https://autohotkey.com/board/topic/60547-what-is-a-window-control/
+6.	Help with and understanding classNN and alternatives – AutoHotkey forum https://www.autohotkey.com/boards/viewtopic.php?t=407#p4139
+7.	More training connecting to programs with controls – the-Automator.com https://the-automator.com/autohotkey/automating-programs-with-controls-in-autohotkey/
+
+5.	Controls have elements like: Classes, hwnds/IDs
+a.	Using a class is one way you "connect" to a control
+b.	ClassNN is the Instance
+c.	Connecting to a control can be done by using the parent Class & specific Instance of local class
+
+6.	Tools for working with Controls
+a.	Window Spy / Active Window Info tool built-in to AutoHotkey
+b.	WinSpy – Window Information tool from Alguimist: https://www.autohotkey.com/boards/viewtopic.php?f=6&t=28220
+c.	SimpleSpy – More focused tool from Joe Glines and Maestrith: http://the-automator.com/SimpleSpy
+
+
+###CONTROLS- Conectar
+- Controls: classes, hwnds, ids
+- ClassNN é a instância
+- Podemos especificar qual parent class e especificar a instancia desse local class
+
+###CONTROLS - comandos
+1.	ControlGetText- Retrieves text from a control
+2.	ControlSetText- Changes the text of a control
+3.	ControlSend-  Sends simulated keystrokes to a window or control
+4.	ControlSendRaw- Sends the keystrokes in the Keys parameter without translating {Enter} to Enter
+5.	ControlGetPos- Retrieves the position and size of a control
+6.	ControlGetFocus- Retrieves which control of the target window has input focus, if any
+7.	ControlFocus- Sets input focus to a given control on a window
+8.	ControlGet- Retrieves a list of items from a ListView, ListBox, ComboBox, or DropDownList. For ListView, additional options can be specified
+a.	Checked- Retrieves 1 if the checkbox or radio button is checked or 0 if not
+b.	Selected- Retrieves the selected text in an Edit control
+c.	Line- Retrieves the text of the specified line number in an Edit control
+d.	CurrentLine- Retrieves the line number in an Edit control where the caret resides
+e.	LineCount- Retrieves the number of lines in an Edit control
+f.	List- Retrieves a list of items from a ListView, ListBox, ComboBox, or DropDownList.  The below only work for listviews.  
+i.	Selected- Retrieves only the selected (highlighted) rows rather than all rows. If none, OutputVar is made blank
+ii.	Focused- Retrieves only the focused row. If none, OutputVar is made blank
+iii.	Col4- Retrieves only the fourth column (field) rather than all columns (replace 4 with a number of your choice)
+iv.	Count- Retrieves a single number that is the total number of rows in the control
+v.	Count Selected- Retrieves the number of selected (highlighted) rows
+vi.	Count Focused- Retrieves the row number (position) of the focused row (0 if none)
+vii.	Count Col- Retrieves the number of columns in the control (or -1 if the count cannot be determined)
+9.	ControlClick- Sends a mouse button or mouse wheel event to a control
+10.	ControlMove- Moves or resizes a control
+11.	Control- Makes a variety of changes to a control
+a.	Check-  Turns on (checks) a radio button or checkbox
+b.	Uncheck- Turns off (unchecks) a radio button or checkbox
+c.	Enable- Enables a control if it was previously disabled
+d.	Disable- Disables or "grays out" a control
+e.	Show- Shows a control if it was previously hidden
+f.	Hide- Hides a control
+g.	Style- Changes the style of a control.
+h.	ExStyle- Changes the extended style of a control.
+i.	ShowDropDown- Shows the drop-down list of a ComboBox control.
+j.	HideDropDown- Hides the drop-down list of a ComboBox control.
+k.	TabLeft- Moves left by one or more tabs in a SysTabControl32.
+l.	TabRight- Moves right by one or more tabs in a SysTabControl32. 
+m.	Add- Adds the specified string as a new entry at the bottom of a ListBox, ComboBox (and possibly other types)
+n.	Delete- Deletes the specified entry number from a ListBox or ComboBox
+o.	Choose- Sets the selection in a ListBox or ComboBox to be the specified entry number
+p.	Choose String-  Sets the selection in a ListBox/ComboBox to the 1st entry whose leading part matches the specified string
+q.	EditPaste- Pastes the specified string at the caret in an Edit control
+
+---
+
+##CONTROLS - Usando a tool
+
+- Abrir notepad e o replace box(ctrl+F)
+> 1. AHK_class #322770 é o parent class(VocÊ tem o parent class > instância dentro  )
+> 2. ClassNN: Edit1 (sempre termina num número pois essa é a instância da classe)
+> 3.
+
+``
+
+- ControlSetText é incrível pois vc não está clicando em algum lugar esperando acertar o lugar e depois enviar keystrokes, você programou para enviar o texto, super rápido, sem estar ativo etc..
+
+```
+
+; bom para usar lógica, se esse botão tiver esse texto mesmo clique.., saber se está no lugar certo
+
+ControlGetText, Var, Button2, Substituir ; substituir é o título, button2 é o control/classNN
+MsgBox % Var
+
+; outra maneira de pegar a mesma info
+ControlGetText, Var, Button2, ahk_class #32770
+MsgBox % Var
+
+; ser mais conciso ainda, especificar mais caso tenha muitas janelas etc..
+ControlGetText, Var, Button2, Substituir ahk_class #32770 ; com título e classe
+MsgBox % Var
+
+ControlGetText, Var, Edit1, Substituir ahk_class Bloco de Notas ; pega todo conteúdo que tá dentro do bloco de ntoas
+MsgBox % Var
+
+ControlSetText, Edit2, Hello World, Substituir ahk_class #32770 ; ControlSetText é incrível pois vc não está clicando em algum lugar esperando acertar o lugar e depois enviar keystrokes
+
+ControlSetText, Button2, That is wild, Substituir ; substituiu o texto no box(match case), editou o texto que aparece na caixinha
+
+```
+
+
+
+```
+ControlSend, Edit2, Substituir, ahk_class #32770 ; colocou o replace na caixa 'replace with', se rodar de novo o script vai append, adicionar junto
+
+; COMO MARCAR A CAIXINHA, SELECIONAR A CAIXINHA
+ControlSend, Button2, c, ahk_class #32770
+
+SetKeyDelay, 10, 10 ; altera a velocidade, muitas vezes tem problema de enviar extremamente rápido
+ControlSend, Edit2, Wow how cool{!}, ahk_class #32770
+
+```
+
+```
+; sendraw pode enviar simbolos, etc, caracteres especiais
+SetKeyDelay, 10, 10
+ControlSendRaw, Edit, Hello world!, ahk_class #32770
+```
+
+- pegar posição do control, bem legal
+
+```
+ControlGetPos, x, y, w,h, Button4, ahk_class #32770
+MsgBox % "x: "x "`ny: " y "`nwidth: " w "`nHeight: " h ; localização do find next button do replace do notepad
+```
+
+- mostra o focus onde voce esta no notepad, quer saber onde vc está, armazenar onde vc está
+
+```
+ControlGetFocus, Var, ahk_class #32770
+MsgBox % Var
+```
+
+- verificar se está checked ou não
+
+```
+ControlGet, var, Checked,, Button2, ahk_class #32770
+MsgBox % Var ; 0 uncheked, 1 checked
+
+; retorna o que está selecionado com o mouse
+ControlGet, var, Selected,, Edit1, ahk_class Bloco de Notas
+MsgBox % Var
+```
+
+- pegar uma linha especifica que quer
+
+```
+ControlGet,Var,Line,2,Edit1, ahk_class Bloco de Notas
+MsgBox % Var ; retorna linha 2 do bloco de notas
+
+```
+
+- contar linhas
+
+```
+ ControlGet, Var, LineCount,, Edit1, ahk_class Bloco de Notas ; mostra o número de linhas
+```
+
+- Pegar lista de itens, abrir lista de fontes, ajutar fonte e tamanho do notepad, combobox
+
+```
+ ControlGet, Var, List,, Combobox1, ahk_class #32770
+ MsgBox % Var
+
+  ControlGet, Var, List,, ComboBox5, ahk_class #32770
+ MsgBox % Var
+```
+
+- pegar de dropdownlist
+
+```
+ ControlGet, Var, List,, ComboBox5, ahk_class #32770
+ MsgBox % Var
+```
+
+- TOOL GREPWIN - BOA PARA ENCONTRAR TEXTO EM ARQUIVOS, SUBSTITUIR, ETC
+
+- list: Selected, focused, col4, count, count selected, count focused, count col
+- usar o windowspy ou simple spy arrastando pra dentro da lista ate encontrar ListView no control:
+- super poderoso
+
+```
+ ControlGet, Var, List, Select Col1, SysListView321, ahk_class #32770 ; é do programa grepwin aberto, mostra colunas e lista de arquivos, você vai pegar a primeira coluna que está selecionada(selected) pois colocou col1, pode colocar col2/etc ou deixar sem col vai pegar tudo.
+ MsgBox % Var
+
+ ; TESTANDO NO PROGRAMA EVERYTHING
+ ControlGet, Var, List, Selected Col1, EVERYTHING_TOOLBAR1, ahk_class EVERYTHING
+ MsgBox % Var
+
+```
+
+```
+ ControlGet, Var, List, Focused, SysListView321, ahk_class #32770
+ MsgBox % Var
+
+ ; CONTAGEM
+ ControlGet, Var, List, Count, SysListView321, ahk_class #32770 ; numero de linhas
+ MsgBox % Var
+
+ ControlGet, Var, List, CountSelected, SysListView321, ahk_class #32770 ; numero de linhas selecionadas
+ MsgBox % Var
+
+ ControlGet, Var, List, CountFocused, SysListView321, ahk_class #32770 ; numero de linhas focadas
+ MsgBox % Var
+
+  ControlGet, Var, List, CountCol, SysListView321, ahk_class #32770 ; numero de colunas
+ MsgBox % Var
+
+```
+
+- pegar combobox, notepad, editar fonte, adicionar um texto na lista de estilos de fonte
+
+```
+ Control, Add, Autohotkey, Combobox2, ahk_class #32770
+ Control, Delete, 3, Combobox2, ahk_class #32770
+```
+
+- escolher algo no box, selecionar com base no nome ou posição
+
+```
+ Control, Choose,3, ComboBox1, ahk_class #32770
+ Control, ChooseString,Arial, ComboBox1, ahk_class #32770
+ Control, ChooseString,Arial Round, ComboBox1, ahk_class #32770
+```
+
+###CONTROCLICK
+
+- botão replace do notepad
+- controlick é incrível não interfere no uso do mouse
+
+```
+ ControlClick,Button5,ahk_class #32770 ; clica no substituir
+ ControlClick,Button7,ahk_class #32770 ; clica no cancelar
+```
+
+##MOVING A CONTROL, MUDANDO SEU TAMANHO
+
+```
+ ControlMove, Button7, 150, 150,,, ahk_class #32770 ; ,, é width and height ; move o botao cancelar do notepad para baixo
+ ControlMove, Button7, 250, 150, 300, 50, ahk_class #32770
+
+```
+
+###Marcar as boxes automaticamente
+
+```
+Loop, ; fica num loop marcando e desmarcando a caixa de match case do notepad
+{
+	; seleciona,marca o control match case
+	 Control, Check,,Button2, ahk_class #32770  ; , é o value
+	 Sleep, 2000
+	 Control, UnCheck,, Button2, ahk_class #32770
+	 Sleep, 800
+ }
+```
+
+###Desabilitar e habilitar control
+
+```
+Loop{ ; habilita e desabilita o checkbox num loop
+	 Control, Disable,,Button2,ahk_class #32770 ; desabilita o checkbox match case do notepad
+	 Sleep, 800
+	 Control, Enable,,Button2,ahk_class #32770 ; desabilita o checkbox match case do notepad
+	 Sleep, 800
+}
+
+; ESCONDER UM CONTROL
+
+ Control, Hide,,Button2,ahk_class #32770 ;
+ Control, Show,,Button2,ahk_class #32770 ;
+
+```
+
+###ESCONDER E MOSTRAR UMA DROPDOWN LIST
+
+```
+; page setup size letter do notepad
+ Control, showdropdown,, ComboBox1, ahk_class #32770
+ Control, hidedropdown,, ComboBox1, ahk_class #32770
+```
+
+###CHANGING TABS IN A CONTROL
+
+```
+If (! A_IsAdmin){
+	Run *RunAs "%A_ScriptFullPath%"
+	ExitApp
+}
+; é as tab do system properties do pc windows, propriedades do sistema meu computador
+ Control, TabLeft,,SysTabControl321, ahk_class #32770
+ Control, TabRight,,SysTabControl321, ahk_class #32770
+```
+
+```
+; colar a palavra autohotkey no bloco de notas, onde o cursor estiver vai colar
+ Control, Editpaste, Autohotkey, Edit1, ahk_class Bloco de Notas 
+```
+
+- Ser específico e colocar título
+
+```
+; checkbox greed do ahk studio
+ Control, Check,, Button3, AHK Studio ahk_class AutoHotKeyGUI
+ Control, Check,, Button3, AHK Studio ahk_class AutoHotkeyGUI
+
+ Control, Check,, Button3, AHK Studio c:\asas\ssa\ahk.ahk ahk_class AutoHotkeyGUI 
+
+ ; ;
+ ; ;
+
+ ControlGet, Var, List,, SysListView321, 
+```
+
+---
+
+##WINMENUSELECTITEM
+
+- Pode estar minimizdo no background, nao precisa estar ativo
+
+```
+; notepad, abre o file dps open
+ WinMenuSelectItem, ahk_class Bloco de Notas,, File, Open
+
+ Clipboard:="wow, that is cool"
+ WinActivate, ahk_class Bloco de Notas
+ WinMenuSelectItem, ahk_class Bloco de Notas,, Edit, Paste
+
+  WinMenuSelectItem, ahk_class Bloco de Notas,, Format, Word Wrap
+
+  ; ENVIANDO NÚMEROS
+  WinMenuSelectItem, ahk_class Bloco de Notas,, 1&,3& ; = file e depois save
+
+run cmd.exe
+Clipboard:="echo hello world!`r" ; executa o código e pula pro próx
+Sleep, 150
+WinMenuSelectItem, ahk_exe cmd,exe,, 0&,Edit, Select All
+Sleep, 150
+WinMenuSelectItem, ahk_exe cmd,exe,, 0&,Edit, Paste
+Sleep, 150
+MsgBox % Clipboard
+
+```
+
+---
+##LOOPS
+
+- A_index = contém número do atual loop, começa no 1 e não 0
+- Continue = começa um novo loop, pula o resto das operações do loop
+- Break = termina o loop
+
+```
+ Loop, 3
+ {
+ 	MsgBox Hello World
+ }
+
+ Loop, 3 {
+ 	MsgBox Hello World
+ }
+
+ Loop, 3 MsgBox Hello World
+
+```
+
+```
+ Loop, 3{
+ 	MsgBox % A_index "Hello World"
+ }
+
+  Loop, 3{
+ 	MsgBox %A_index% Hello World
+ }
+
+count:=1
+Loop, 3{
+	
+ 	MsgBox %count% " Hello World"
+	count++
+}
+```
+
+```
+ Loop, 3{
+ 	if(A_Index < 3)
+ 		Continue ; repete o loop, pula
+ 	MsgBox % A_Index " Hello World"
+ }
+
+  Loop, 3{
+ 	if(A_Index = 2)
+ 		Break ; para o loop
+ 	MsgBox % A_Index " Hello World"
+ }
+
+```
+
+```
+ Var:=3
+ Loop, % Var
+ 	MsgBox % a_Index
+```
+
+##WHILE LOOP
+
+While, % (X < 4){
+	X:=A_INDEX
+	MsgBox % X
+}
+
+##UNTIL LOOP
+```
+ Loop {
+ 	MsgBox % A_Index
+ }Until (A_Index=3)
+```
+
+---
+
+##PARSING TEXT
+
+Loop, Parsing a string  
+Loop, Parse, InputVar, Delimiters, OmitChars
+•	The parameter Parse (above) must be a string
+•	The third parameter is expecting a Variable
+•	The built-in variable A_LoopField exists within any parsing loop and contains the current substring
+•	If you use CSV as a delimter, the inputVar will be parsed in standard Comma Separated Value format
+•	OmitChars- An optional list of characters (case sensitive) to exclude from the beginning and end of each substring. For example, if OmitChars is %A_Space%%A_Tab%, spaces and tabs will be removed from the beginning and end (but not the middle) of every retrieved substring.
+
+```
+Var:= "joe|  was |here |today", %A_Space%%A_Tab%
+ Loop, Parse, Var, "|"
+ {
+ 	MsgBox % A_LoopField ; separou pelo |
+ }
+```
+
+- CSV
+
+```
+Var = "first field", SecondField, "the word ""especial"" is quoted literraly",, "last field has literal comma" 
+Loop, Parse, Var, CSV
+	MsgBox % A_LoopField
+```
+
+- loop por files and directories
+- ALoopFileFullPath, A_LoopFileSize, A_LoopFileSizeKB, A_LoopFileSizeMB
+
+```
+
+; loop nos arquivos, exibindo o indice e nome do arquivo
+ Loop, Files, C:\userz\joe\videos\*.*
+ {
+ 	MsgBox % A_index a_tab A_LoopFileName
+ }
+
+; DF = diretorios e files
+  Loop, Files, C:\userz\joe\videos\*.*, DF ; DF = DIRECTORIES AND FOLDERS
+ {
+ 	MsgBox % A_index a_tab A_LoopFileName
+ }
+
+   Loop, Files, C:\userz\joe\videos\*.*, DFR ; R = RECURSIVE, VAI DENTRO DAS PASTAS
+ {
+ 	MsgBox % A_index a_tab A_LoopFileName
+ }
+
+    Loop, Files, C:\userz\joe\videos\*.*, DFR ; PEGAR UMA LISTA DOS ARQUIVOS
+ {
+ 	Files.= A_LoopFileName "`n" ; é append
+ }
+ MsgBox % Files
+
+
+```
+
+---
+
+##ARRAY e FOR LOOP
+
+```
+ Arr:= ["One", "Two", "Tree"]
+MsgBox % IsObject(Arr) ; 1 = sim , é objeto
+
+For keyIndex, Value in Arr
+	MsgBox % keyIndex a_tab Value
+```
+
+- acessar o array e colocar valor
+
+```
+  Arr:= ["One", "Two", "Tree"]
+  MsgBox % Arr[2] ; retorna o valor do index 2
+  MsgBox % Arr.3 ; outra forma de retornar o valor do index
+
+  Arr.2:="Dois" ; muda o valor da posição 2 do array
+  MsgBox % Arr[2]
+```
+
+```
+ Arr:= ["One", "Two", "Tree"]
+ For, k, v in Arr
+ {
+ 	data.= "`t" k "=" v "`r" ; .= é append
+
+ }
+DebugWindow(data, 1, 1, 500,0) ; DebugWindow(variavel, clear:=1, linebreak:=1, sleep:=500,autohide:= 0) ; clear = limpar toda vez que roda, quer uma quebra de linha, quer sleep, autohide esconmder
+```
+
+```
+  Arr:= ["One", "Two", "Tree"]
+  Arr.InsertAt(2, "Oláaa") ; coloque esse valor onde eu quero(index 2) e o resto puxe tudo pra direita()
+  Arr.Push("dog") ; adiciona no final o dog
+  Arr.RemoveAt(2) ; remove a posição/index 2, e o que tava na posição 3 antes agora está na posição 2
+  Arr.Pop() ; remove o ultimo item da lista 
+  Arr.RemoveAt(2, 2) ; remove dois
+ For, k, v in Arr
+ {
+ 	data.= "`t" k "=" v "`r" ; .= é append
+
+ }
+DebugWindow(data, 1, 1, 500,0) ; DebugWindow(variavel, clear:=1, linebreak:=1, sleep:=500,autohide:= 0) ; clear = limpar toda vez que roda, quer uma quebra de linha, quer sleep, autohide esconmder
+```
+
+```
+ Arr:= ["One", "Two", "Tree",,"five"]
+  For, k, v in Arr
+ {
+ 	data.= "`t" k "=" v "`r" ; .= é append
+
+ }
+ DebugWindow(data, 1, 1, 500,0)
+ MsgBox % Arr.MaxIndex() ; retorna o maior indice
+ MsgBox % Arr.MinIndex() ; retorna o menor indice
+ MsgBox % Arr.Count() ; retorna a contagem, se o array tiver elemento em branco não cai na contagem é bom
+
+
+```
+
+```
+
+Arr:= ["One", "Two", "Three"]
+Arr2:= ["One",, "Three"]
+ MsgBox % Arr.2  Arr[2]
+
+ For a,b in Arr{
+ 	 MsgBox % a a_tab b
+ 	 If(b="Two"){
+ 	 	Arr.RemoveAt(a) ; remove o indice de onde estamos, que é o two
+ 	 }
+ }
+ MsgBox % Arr.2
+
+ For a,b in Arr{
+ 	data.= "`t" a "=" b
+ }
+DebugWindow(data, Clear:=1, LineBreak:=1, Sleep:=500,AutoHide:=0)
+
+
+;;;;;;;;;;;;;;;;;;;; usando loop
+; Arr.Delete(2)
+Arr.RemoveAt(2)
+Loop, % Arr.Count(){
+	MsgBox % Arr[A_index] ; vai mostrar o valor
+	MsgBox % Arr2[A_index] ; nao mostra o valor three
+}
+Loop, % Arr.MaxIndex(){
+	MsgBox % Arr[A_index] ; vai mostrar o valor
+	MsgBox % Arr2[A_index] ; mostra o valor tree
+}
+
+```
+
+
+- Associative arrays, é igual um dicionário, phonebook.
+- Vc pode definir uma key e value, o índice/key nao precisa ser 1/2/3/4... vc pode definir uma key unica
+
+```
+Dict:={"One":1, 2:"Two", "Taco Nacho":"Three"}
+
+MsgBox % Dict.one ; mostra o valor
+MsgBox % Dict.2 ; mostra o valor
+MsgBox % Dict["Taco Nacho"] ; para acessar keys com espaços
+; abaixo acesso equivalente
+MsgBox % Dict.One a_Tab Dict["One"]
+
+; adicionar novo keyvalue par
+Dict["Fourth"]:="Day" ; adding a new key-value pair
+
+for k,v in Dict{ ; fazer um loop e armazenar na variavel data
+	data.= a_tab k "= " v "`n"
+
+}
+
+; diferente do simple array, pega a ordem pelo index mas aqui pega pela ordem alfabetica
+DebugWindow(data, Clear:=1, LineBreak:=1, Sleep:=500,AutoHide:=0)
+MsgBox pause
+
+; adicionar novo keyvalue par
+Dict[2]:="New Value" ; adding a new key-value pair
+
+for k,v in Dict{ ; fazer um loop e armazenar na variavel data
+	data.= a_tab k "= " v "`n"
+
+}
+
+; diferente do simple array, pega a ordem pelo index mas aqui pega pela ordem alfabetica
+DebugWindow(data, Clear:=1, LineBreak:=1, Sleep:=500,AutoHide:=0)
+
+;;;;; removendo um valor
+Dict["One"]:="" ; definimos como nada
+Dict.Delete("One") ; remove o par do array
+
+;;;;;;;; minindex, maxindex e count
+MsgBox % Dict.MinIndex() ; pega o menor numero se alguma coisa tiver numero
+MsgBox % Dict.MaxIndex() ; pega o maior numero se alguma coisa tiver numero
+MsgBox % Dict.Count() ; conta o número de key-value pairs que tem, quantos array tem
+MsgBox % Dict.Length() ; max number, retorna o maximo number
+
+;;;; metodo para descobrir se existe uma key
+MsgBox % Dict.HasKey("four") ; retorna um se essa key existe, se nao existir retorna 0
+```
+
+```
+ Dict:={"One": 1, "Two":2, "Three":3, "Four":4, "Five":2}
+ For k,v in Dict
+ If(v=2){ ; se o valor for igual a 2
+ 	MsgBox % "Found " v " At this key: " k
+ }
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Ordens:={"Joe":"Burger", "John":"Tacco", "Susan":"Steak"}
+For Person, Meal in Ordens{
+	data.=Person " wants " Meal "`n"
+}
+DebugWindow(data, Clear:=1, LineBreak:=1, Sleep:=500,AutoHide:=0)
+MsgBox % Orders["Joe"] ; descobrir o que joe quer comer
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Produtos:={"Aspirin":4.40, "Advil":5.20, "Excedrin":3}
+
+; for k,v in Prods
+;	data.= k " Costs " v "`n"
+; DebugWindow(data, Clear:=1, LineBreak:=1, Sleep:=500,AutoHide:=0)
+
+Pedidos:=["Aspirin", "Advil", "Advil", "Advil", "Advil"]
+sum:=0
+For, k, v in Pedidos{
+	sum:=Sum+Produtos[v] ; Produtos[v] traz o value/valor que é o preço
+}
+MsgBox % Sum
+
+
+```

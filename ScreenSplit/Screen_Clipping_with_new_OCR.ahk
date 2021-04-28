@@ -21,13 +21,10 @@ if not A_IsAdmin
 */
 ;#NoTrayIcon
 ;~ Menu, tray, icon, AutoRun\camera.ico , 1
-#^Lbutton::SCW_ScreenClip2Win(clip:=0,email:=0,OCR:=1) ; Win+Control+Left click- Perform OCR on selection and store in clipboard
+#^Lbutton::SCW_ScreenClip2Win(,,OCR:=1) ; Win+Control+Left click- Perform OCR on selection and store in clipboard
 #!Lbutton::SCW_ScreenClip2Win(clip:=0,email:=1,OCR:=0) ; Wind+Alt+left click =saves images and attach to email (path of jpg on clipboard)
 #Lbutton::SCW_ScreenClip2Win(clip:=1,email:=0,OCR:=0)  ; Win+left click mouse=auto copy to clipboard
 
-#b::
-Run mmsys.cpl
-Return
 
 ;********************After clip exists***********************************
 #IfWinActive, ScreenClippingWindow ahk_class AutoHotkeyGUI
